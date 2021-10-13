@@ -1,15 +1,15 @@
 CREATE TABLE beauty_user (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(150),
-    email  VARCHAR(150),
-    password TEXT,
-    is_admin BOOLEAN
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    password TEXT NOT NULL,
+    is_admin BOOLEAN NOT NULL
 ); 
 
 CREATE TABLE skincare_product (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(150),
-    type  VARCHAR(150),
+    name VARCHAR(150) NOT NULL,
+    type  VARCHAR(150) NOT NULL,
     price FLOAT,
     review TEXT,
     is_recommended BOOLEAN

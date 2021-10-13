@@ -1,12 +1,23 @@
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
+const session = require('express-session');
 const { getComments, getAllProducts } = require('./controller/skincare');
+const { register, login, logout } =require('./controller/auth');
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
 const app = express();
 
 app.use(express.json());
+
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESSION_SECRET,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 90,
+    }
+}))
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -21,6 +32,13 @@ massive({
     });
 
 
+//authorization endpoints
+app.post('/api/auth/register', register);
+app.post('/api/auth/login', login);
+app.post('/api/auth/logout', logout);
+
+
+//skincare endpoints
 app.get('/api/skincare/comment/:id', getComments);
 app.get('/api/skincare/products', getAllProducts);
 

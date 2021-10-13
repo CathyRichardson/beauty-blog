@@ -12,7 +12,7 @@ function App() {
     try {
       // try getting all the products to show frontend is connecting to backend
       const { data } = await axios.get(`/api/skincare/products`);
-      setProducts(data)
+      setProducts(data);
     } catch (error) {
       console.log(error)
     }
