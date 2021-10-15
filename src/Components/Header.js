@@ -20,6 +20,7 @@ function Header() {
 
     const handleOpenRegisterModal = () => {
         setShowRegisterModal(true);
+        setShowSignInModal(false);
     }
 
     const handleCloseRegisterModal = () => {
@@ -37,8 +38,9 @@ function Header() {
             >
                 <h2>Sign In</h2>
                 <button onClick={handleCloseSignInModal}>Close</button>
+                <button onClick={handleOpenRegisterModal}>Register</button>
             </ReactModal>
-            <button onClick={handleOpenRegisterModal}>Register</button>
+            
             <ReactModal
                 isOpen={showRegisterModal}
                 contentLabel="Register Modal"
