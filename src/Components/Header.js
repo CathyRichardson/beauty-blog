@@ -2,26 +2,50 @@ import React, { useState, useEffect } from 'react'
 import ReactModal from 'react-modal';
 import axios from 'axios'
 
+
 function Header() {
 
-    const [showModal, setShowModal] = useState(false);
+    ReactModal.setAppElement('#root');
 
-    const handleOpenModal = () => {
-        setShowModal(true);
+    const [showSignInModal, setShowSignInModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+    const handleOpenSignInModal = () => {
+        setShowSignInModal(true);
     }
 
-    const handleCloseModal = () => {
-        setShowModal(false);
+    const handleCloseSignInModal = () => {
+        setShowSignInModal(false);
     }
+
+    const handleOpenRegisterModal = () => {
+        setShowRegisterModal(true);
+    }
+
+    const handleCloseRegisterModal = () => {
+        setShowRegisterModal(false);
+    }
+
 
     return (
         <div>
-            <button onClick={handleOpenModal}>Sign In</button>
+            <button onClick={handleOpenSignInModal}>Sign In</button>
             <ReactModal
-                isOpen={showModal}
-                contentLabel="Minimal Modal Example"
+                isOpen={showSignInModal}
+                contentLabel="Sign In Modal"
+                onRequestClose={handleCloseSignInModal}
             >
-                <button onClick={handleCloseModal}>Close Modal</button>
+                <h2>Sign In</h2>
+                <button onClick={handleCloseSignInModal}>Close</button>
+            </ReactModal>
+            <button onClick={handleOpenRegisterModal}>Register</button>
+            <ReactModal
+                isOpen={showRegisterModal}
+                contentLabel="Register Modal"
+                onRequestClose={handleCloseRegisterModal}
+            >
+                <h2>Register</h2>
+                <button onClick={handleCloseRegisterModal}>Close</button>
             </ReactModal>
         </div>
     );
