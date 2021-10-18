@@ -9,24 +9,73 @@ function Header() {
 
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const handleOpenSignInModal = () => {
         setShowSignInModal(true);
     }
 
     const handleCloseSignInModal = () => {
+        setUsername('');
+        setPassword('');
         setShowSignInModal(false);
+    }
+
+    const handleSignIn = async () => {
+        try {
+            const user = await axios.post('/api/auth/login', { username, password });
+            // this.props.updateUser(user.data);
+            handleCloseSignInModal();
+        } catch (err) {
+            alert(err.response.request.response); // leads to the string response from our server endpoint if there is an error
+        }
     }
 
     const handleOpenRegisterModal = () => {
         setShowRegisterModal(true);
-        setShowSignInModal(false);
+        handleCloseSignInModal();
     }
 
     const handleCloseRegisterModal = () => {
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setIsAdmin(false);
         setShowRegisterModal(false);
     }
 
+    const handleUsernameChange = (event) => {
+        const { value } = event.target;
+        setUsername(value);
+    }
+
+    const handlePasswordChange = (event) => {
+        const { value } = event.target;
+        setPassword(value);
+    }
+
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+    }
+
+    const handleIsAdminChange = (event) => {
+        const { checked } = event.target;
+        setIsAdmin(checked);
+    }
+
+    const handleRegister = async () => {
+        try {
+            const user = await axios.post('/api/auth/register', { username, email, password, isAdmin });
+            // this.props.updateUser(user.data);
+            handleCloseRegisterModal();
+        } catch (err) {
+            alert(err.response.request.response);
+        }
+    }
 
     return (
         <div>
@@ -37,16 +86,43 @@ function Header() {
                 onRequestClose={handleCloseSignInModal}
             >
                 <h2>Sign In</h2>
-                <button onClick={handleCloseSignInModal}>Close</button>
+                <label>
+                    Username
+                    <input type="text" onChange={handleUsernameChange} value={username} />
+                </label>
+                <label>
+                    Password
+                    <input type="password" onChange={handlePasswordChange} value={password} />
+                </label>
+                <button onClick={handleSignIn}>Sign In</button>
                 <button onClick={handleOpenRegisterModal}>Register</button>
+                <button onClick={handleCloseSignInModal}>Cancel</button>
             </ReactModal>
-            
+
             <ReactModal
                 isOpen={showRegisterModal}
                 contentLabel="Register Modal"
                 onRequestClose={handleCloseRegisterModal}
             >
                 <h2>Register</h2>
+                <label>
+                    Username
+                    <input type="text" onChange={handleUsernameChange} value={username} />
+                </label>
+                <label>
+                    Email
+                    <input type="email" onChange={handleEmailChange} value={email} />
+                </label>
+
+                <label>
+                    Password
+                    <input type="password" onChange={handlePasswordChange} value={password} />
+                </label>
+                <label>
+                    I am an Admin
+                    <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
+                </label>
+                <button onClick={handleRegister}>Register</button>
                 <button onClick={handleCloseRegisterModal}>Close</button>
             </ReactModal>
         </div>

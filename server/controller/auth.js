@@ -39,11 +39,11 @@ const login = async (req, res) => {
         const result = await db.auth.get_user(username);
         const foundUser = result[0];
         if (!foundUser) {
-            return res.status(401).send('User not found. Please register as a new user before logging in.');
+            return res.status(401).send('Invalid Login');
         }
         const isAuthenticated = bcrypt.compareSync(password, foundUser.password)  //This method compares the password entered by the user at login to the hashed and salted version stored in the database.
         if (!isAuthenticated) {
-            return res.status(403).send('Incorrect password');
+            return res.status(403).send('Invalid Login');
         }
         req.session.user = {
             isAdmin: foundUser.is_admin,
