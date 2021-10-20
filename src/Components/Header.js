@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ReactModal from 'react-modal';
 import axios from 'axios'
+import { connect } from 'react-redux';
+import { saveUserData } from '../redux/userReducer';
 
 
-function Header() {
+function Header(props) {
 
     ReactModal.setAppElement('#root');
 
@@ -27,10 +29,10 @@ function Header() {
     const handleSignIn = async () => {
         try {
             const user = await axios.post('/api/auth/login', { username, password });
-            // this.props.updateUser(user.data);
+            props.saveUserData(user.data);
             handleCloseSignInModal();
         } catch (err) {
-            alert(err.response.request.response); // leads to the string response from our server endpoint if there is an error
+            alert(err); 
         }
     }
 
@@ -70,10 +72,10 @@ function Header() {
     const handleRegister = async () => {
         try {
             const user = await axios.post('/api/auth/register', { username, email, password, isAdmin });
-            // this.props.updateUser(user.data);
+            props.saveUserData(user.data);
             handleCloseRegisterModal();
         } catch (err) {
-            alert(err.response.request.response);
+            alert(err);
         }
     }
 
@@ -129,4 +131,14 @@ function Header() {
     );
 }
 
-export default Header;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = {
+    saveUserData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
