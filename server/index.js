@@ -15,7 +15,7 @@ app.use(session({
     saveUninitialized: true,
     secret: SESSION_SECRET,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 90,
+        maxAge: 1000 * 60 * 60 * 24 * 90,    //90 days. 1000 milliseconds * 60sec * 60min * 24hrs * 90days
     }
 }))
 

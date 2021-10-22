@@ -1,6 +1,6 @@
 CREATE TABLE beauty_user (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(150) NOT NULL,
+    name VARCHAR(150) NOT NULL UNIQUE,
     email VARCHAR(150) NOT NULL,
     password TEXT NOT NULL,
     is_admin BOOLEAN NOT NULL

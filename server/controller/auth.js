@@ -8,7 +8,7 @@ const register = async (req, res) => {
         }
         const db = req.app.get('db');
         const getUserResult = await db.auth.get_user(username);
-        const existingUser = getUserResult[0];
+        const existingUser = getUserResult[0];   //massive db queries return an array. 
         if (existingUser) {
             return res.status(409).send('Username taken');
         }
@@ -29,7 +29,6 @@ const register = async (req, res) => {
         console.log(e);
         res.status(500).send("registration error");
     }
-
 }
 
 const login = async (req, res) => {
@@ -43,7 +42,7 @@ const login = async (req, res) => {
         }
         const isAuthenticated = bcrypt.compareSync(password, foundUser.password)  //This method compares the password entered by the user at login to the hashed and salted version stored in the database.
         if (!isAuthenticated) {
-            return res.status(403).send('Invalid Login');
+            return res.status(401).send('Invalid Login');
         }
         req.session.user = {
             isAdmin: foundUser.is_admin,
@@ -56,7 +55,6 @@ const login = async (req, res) => {
         console.log(e);
         res.status(500).send("login error");
     }
-
 }
 
 const logout = async (req, res) => {
