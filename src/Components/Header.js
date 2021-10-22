@@ -82,6 +82,7 @@ function Header(props) {
     return (
         <div>
             <button onClick={handleOpenSignInModal}>Sign In</button>
+            <h4>user: {props.user.username}</h4>
             <ReactModal
                 isOpen={showSignInModal}
                 contentLabel="Sign In Modal"
