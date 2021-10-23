@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactModal from 'react-modal';
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { saveUserData } from '../redux/userReducer';
+import { saveUserData, clearUserData } from '../redux/userReducer';
 
 
 function Header(props) {
@@ -17,6 +17,20 @@ function Header(props) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(async () => {
+        try {
+            //How can I keep the username from flickering on page refresh?
+            const { data } = await axios.get('/api/auth/user');
+            props.saveUserData(data);
+        } catch (err) {
+            if (err.response.status == 404) {
+                console.log('no logged in user found')
+            } else {
+                console.log(err);
+            }
+        }
+    }, []);
 
     const handleOpenSignInModal = () => {
         setShowSignInModal(true);
@@ -89,10 +103,24 @@ function Header(props) {
         }
     }
 
+    const handleSignOut = async () => {
+        try {
+            await axios.post('/api/auth/logout');
+            props.clearUserData();
+        } catch (err) {
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
+        }
+    }
+
     return (
         <div>
             <button onClick={handleOpenSignInModal}>Sign In</button>
             <h4>user: {props.user.username}</h4>
+            <button onClick={handleSignOut}>Sign Out</button>
             <ReactModal
                 isOpen={showSignInModal}
                 contentLabel="Sign In Modal"
@@ -149,7 +177,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    saveUserData
+    saveUserData,
+    clearUserData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

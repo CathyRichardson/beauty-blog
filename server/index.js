@@ -3,7 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const { getComments, getAllProducts } = require('./controller/skincare');
-const { register, login, logout } =require('./controller/auth');
+const { register, login, logout, getUser } =require('./controller/auth');
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
 const app = express();
@@ -36,6 +36,7 @@ massive({
 app.post('/api/auth/register', register);
 app.post('/api/auth/login', login);
 app.post('/api/auth/logout', logout);
+app.get('/api/auth/user', getUser);
 
 
 //skincare endpoints

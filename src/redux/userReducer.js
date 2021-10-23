@@ -6,12 +6,19 @@ const initialState = {
 }
 
 const SAVE_USER_DATA = "SAVE_USER_DATA";
+const CLEAR_USER_DATA = "CLEAR_USER_DATA";
 
 export function saveUserData(user) {
     const { id, username, isAdmin } = user;
     return {
         type: SAVE_USER_DATA,
         payload: { id, username, isAdmin }
+    }
+}
+
+export function clearUserData() {
+    return {
+        type: CLEAR_USER_DATA
     }
 }
 
@@ -24,6 +31,11 @@ export default function reducer(state = initialState, action) {
                 id,
                 username,
                 isAdmin
+            }
+        case CLEAR_USER_DATA:
+            return {
+                ...state,
+                ...initialState,
             }
         default:
             return state;

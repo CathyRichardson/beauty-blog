@@ -1,16 +1,28 @@
 const bcrypt = require('bcryptjs');
 
+// is there a standard JS way to do this?
+// should at least put this object a separate file to import
+const httpStatus = {
+    ok: 200,
+    created: 201,
+    unauthorized: 401,
+    forbidden: 403,
+    notFound: 404,
+    conflict: 409,
+    internalServiceError: 500,
+}
+
 const register = async (req, res) => {
     const { username, email, password, isAdmin } = req.body;
     try {
         if (!username || !password || !email || isAdmin == null) {
-            return res.status(409).send('Please provide username, email, password, and isAdmin ');
+            return res.status(httpStatus.conflict).send('Please provide username, email, password, and isAdmin ');
         }
         const db = req.app.get('db');
         const getUserResult = await db.auth.get_user(username);
         const existingUser = getUserResult[0];   //massive db queries return an array. 
         if (existingUser) {
-            return res.status(409).send('Username taken');
+            return res.status(httpStatus.conflict).send('Username taken');
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
@@ -23,11 +35,11 @@ const register = async (req, res) => {
             username: registeredUser.name,
             email: registeredUser.email
         }
-        res.status(201).send(req.session.user);
+        res.status(httpStatus.created).send(req.session.user);
 
     } catch (e) {
         console.log(e);
-        res.status(500).send("registration error");
+        res.status(httpStatus.internalServiceError).send("registration error");
     }
 }
 
@@ -38,11 +50,11 @@ const login = async (req, res) => {
         const result = await db.auth.get_user(username);
         const foundUser = result[0];
         if (!foundUser) {
-            return res.status(401).send('Invalid Login');
+            return res.status(httpStatus.unauthorized).send('Invalid Login');
         }
         const isAuthenticated = bcrypt.compareSync(password, foundUser.password)  //This method compares the password entered by the user at login to the hashed and salted version stored in the database.
         if (!isAuthenticated) {
-            return res.status(401).send('Invalid Login');
+            return res.status(httpStatus.unauthorized).send('Invalid Login');
         }
         req.session.user = {
             isAdmin: foundUser.is_admin,
@@ -50,20 +62,30 @@ const login = async (req, res) => {
             username: foundUser.name,
             email: foundUser.email
         }
-        res.status(200).send(req.session.user);
+        res.status(httpStatus.ok).send(req.session.user);
     } catch (e) {
         console.log(e);
-        res.status(500).send("login error");
+        res.status(httpStatus.internalServiceError).send("login error");
     }
 }
 
 const logout = async (req, res) => {
     req.session.destroy(); // This destroys the data stored on the user's session object, effectively logging the user out.
-    res.sendStatus(200);
+    res.sendStatus(httpStatus.ok);
+}
+
+const getUser = (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        res.status(httpStatus.ok).send(user);
+    } else {
+        res.sendStatus(httpStatus.notFound);
+    }
 }
 
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    getUser,
 }
