@@ -7,10 +7,12 @@ import { saveUserData } from '../redux/userReducer';
 
 function Header(props) {
 
-    ReactModal.setAppElement('#root');
+    ReactModal.setAppElement('#root');  //sets parent of modal
 
+    //modal states
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    //user states
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -28,11 +30,15 @@ function Header(props) {
 
     const handleSignIn = async () => {
         try {
-            const user = await axios.post('/api/auth/login', { username, password });
-            props.saveUserData(user.data);
+            const { data } = await axios.post('/api/auth/login', { username, password });
+            props.saveUserData(data);
             handleCloseSignInModal();
         } catch (err) {
-            alert(err); 
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
         }
     }
 
@@ -71,11 +77,15 @@ function Header(props) {
 
     const handleRegister = async () => {
         try {
-            const user = await axios.post('/api/auth/register', { username, email, password, isAdmin });
-            props.saveUserData(user.data);
+            const { data } = await axios.post('/api/auth/register', { username, email, password, isAdmin });
+            props.saveUserData(data);
             handleCloseRegisterModal();
         } catch (err) {
-            alert(err);
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
         }
     }
 
@@ -126,7 +136,7 @@ function Header(props) {
                     <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
                 </label>
                 <button onClick={handleRegister}>Register</button>
-                <button onClick={handleCloseRegisterModal}>Close</button>
+                <button onClick={handleCloseRegisterModal}>Cancel</button>
             </ReactModal>
         </div>
     );
