@@ -3,6 +3,8 @@ import ReactModal from 'react-modal';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { saveUserData, clearUserData } from '../redux/userReducer';
+import routes from '../routes';
+import Nav from './Nav';
 
 
 function Header(props) {
@@ -60,7 +62,7 @@ function Header(props) {
         setShowRegisterModal(true);
         handleCloseSignInModal();
     }
-
+    
     const handleCloseRegisterModal = () => {
         setUsername('');
         setEmail('');
@@ -121,6 +123,7 @@ function Header(props) {
             <button onClick={handleOpenSignInModal}>Sign In</button>
             <h4>user: {props.user.username}</h4>
             <button onClick={handleSignOut}>Sign Out</button>
+
             <ReactModal
                 isOpen={showSignInModal}
                 contentLabel="Sign In Modal"
@@ -166,6 +169,9 @@ function Header(props) {
                 <button onClick={handleRegister}>Register</button>
                 <button onClick={handleCloseRegisterModal}>Cancel</button>
             </ReactModal>
+
+            <Nav />
+            {routes}
         </div>
     );
 }

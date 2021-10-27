@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Header from './Components/Header';
 
-
-function App() {
+function SkincareProduct() {
 
   // const [products, setProducts] = useState([])
 
@@ -21,8 +18,8 @@ function App() {
 
   return (
 
-    <div className="App">
-      <Header />    
+    <div className="SkincareProduct">
+        <h1>Skincare Product</h1>
     </div>
 
 
@@ -38,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default SkincareProduct;
