@@ -1,0 +1,21 @@
+$app-background: #f7f5f8;
+
+.App {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+header {
+  // background-image: url("./images/lemonhero.jpg");
+  height: 45vh;
+  // background-position: top;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background-color: $app-background;
+  margin-top: -25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

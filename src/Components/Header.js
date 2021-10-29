@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { saveUserData, clearUserData } from '../redux/userReducer';
 import routes from '../routes';
 import Nav from './Nav';
+import '../App.scss';
 
 
 function Header(props) {
@@ -62,7 +63,7 @@ function Header(props) {
         setShowRegisterModal(true);
         handleCloseSignInModal();
     }
-    
+
     const handleCloseRegisterModal = () => {
         setUsername('');
         setEmail('');
@@ -120,57 +121,60 @@ function Header(props) {
 
     return (
         <div>
-            <button onClick={handleOpenSignInModal}>Sign In</button>
-            <h4>user: {props.user.username}</h4>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <header>
+                <p className="beauty_logo" >Beauty</p>
+                <button onClick={handleOpenSignInModal}>Sign In</button>
+                <p>user: {props.user.username}</p>
+                <button onClick={handleSignOut}>Sign Out</button>
 
-            <ReactModal
-                isOpen={showSignInModal}
-                contentLabel="Sign In Modal"
-                onRequestClose={handleCloseSignInModal}
-            >
-                <h2>Sign In</h2>
-                <label>
-                    Username
-                    <input type="text" onChange={handleUsernameChange} value={username} />
-                </label>
-                <label>
-                    Password
-                    <input type="password" onChange={handlePasswordChange} value={password} />
-                </label>
-                <button onClick={handleSignIn}>Sign In</button>
-                <button onClick={handleOpenRegisterModal}>Register</button>
-                <button onClick={handleCloseSignInModal}>Cancel</button>
-            </ReactModal>
+                <ReactModal
+                    isOpen={showSignInModal}
+                    contentLabel="Sign In Modal"
+                    onRequestClose={handleCloseSignInModal}
+                >
+                    <h2>Sign In</h2>
+                    <label>
+                        Username
+                        <input type="text" onChange={handleUsernameChange} value={username} />
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" onChange={handlePasswordChange} value={password} />
+                    </label>
+                    <button onClick={handleSignIn}>Sign In</button>
+                    <button onClick={handleOpenRegisterModal}>Register</button>
+                    <button onClick={handleCloseSignInModal}>Cancel</button>
+                </ReactModal>
 
-            <ReactModal
-                isOpen={showRegisterModal}
-                contentLabel="Register Modal"
-                onRequestClose={handleCloseRegisterModal}
-            >
-                <h2>Register</h2>
-                <label>
-                    Username
-                    <input type="text" onChange={handleUsernameChange} value={username} />
-                </label>
-                <label>
-                    Email
-                    <input type="email" onChange={handleEmailChange} value={email} />
-                </label>
+                <ReactModal
+                    isOpen={showRegisterModal}
+                    contentLabel="Register Modal"
+                    onRequestClose={handleCloseRegisterModal}
+                >
+                    <h2>Register</h2>
+                    <label>
+                        Username
+                        <input type="text" onChange={handleUsernameChange} value={username} />
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" onChange={handleEmailChange} value={email} />
+                    </label>
 
-                <label>
-                    Password
-                    <input type="password" onChange={handlePasswordChange} value={password} />
-                </label>
-                <label>
-                    I am an Admin
-                    <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
-                </label>
-                <button onClick={handleRegister}>Register</button>
-                <button onClick={handleCloseRegisterModal}>Cancel</button>
-            </ReactModal>
+                    <label>
+                        Password
+                        <input type="password" onChange={handlePasswordChange} value={password} />
+                    </label>
+                    <label>
+                        I am an Admin
+                        <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
+                    </label>
+                    <button onClick={handleRegister}>Register</button>
+                    <button onClick={handleCloseRegisterModal}>Cancel</button>
+                </ReactModal>
 
-            <Nav />
+                <Nav />
+            </header>
             {routes}
         </div>
     );
