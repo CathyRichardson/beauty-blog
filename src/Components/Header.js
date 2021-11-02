@@ -123,10 +123,12 @@ function Header(props) {
     return (
         <div>
             <header>
+                <div className="header-flex">
                 <img src={logo} alt="beauty logo" className="beauty-logo" />
-                <button onClick={handleOpenSignInModal}>Sign In</button>
-                <p>user: {props.user.username}</p>
-                <button onClick={handleSignOut}>Sign Out</button>
+                <a onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</a>
+                <p className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
+                <a onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</a>
+                </div>
 
                 <ReactModal
                     isOpen={showSignInModal}
