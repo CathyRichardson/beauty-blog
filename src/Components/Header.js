@@ -6,6 +6,7 @@ import { saveUserData, clearUserData } from '../redux/userReducer';
 import routes from '../routes';
 import Nav from './Nav';
 import '../App.scss';
+import logo from '../images/BeautyLogo.png';
 
 
 function Header(props) {
@@ -122,7 +123,7 @@ function Header(props) {
     return (
         <div>
             <header>
-                <p className="beauty_logo" >Beauty</p>
+                <img src={logo} alt="beauty logo" className="beauty-logo" />
                 <button onClick={handleOpenSignInModal}>Sign In</button>
                 <p>user: {props.user.username}</p>
                 <button onClick={handleSignOut}>Sign Out</button>

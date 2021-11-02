@@ -1,17 +1,16 @@
-// import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import '../App.scss';
 
 function Nav() {
 
     return (
-        <div className='navLinks'>
-            <Link to='/beauty'>Home</Link>
-            <Link to='/beauty/skincare'>Skincare</Link>
-            <Link to='/beauty/makeup'>Makeup</Link>
-            <Link to='/beauty/haircare'>Haircare</Link>           
-        </div>
+        <nav>
+            <Link to='/beauty' className="nav-link">Home</Link>
+            <Link to='/beauty/skincare' className="nav-link" >Skincare</Link>
+            <Link to='/beauty/makeup' className="nav-link">Makeup</Link>
+            <Link to='/beauty/haircare' className="nav-link" >Haircare</Link>
+        </nav>
     );
 }
 

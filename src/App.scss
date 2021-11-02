@@ -13,9 +13,29 @@ header {
   // background-repeat: no-repeat;
   // background-size: cover;
   background-color: $app-background;
-  margin-top: -25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.beauty-logo {
+  height: 20%;
+}
+
+nav {
+  margin: 0 auto;
+}
+
+.nav-link {
+  margin: 20px;
+  color: green;
+  text-decoration: none;
+  // padding: 20px;
+}
+
+.nav-link:hover {
+  color:#00A0C6; 
+  text-decoration:underline; 
+  cursor:pointer;  
 }
