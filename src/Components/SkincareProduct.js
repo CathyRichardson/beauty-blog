@@ -18,12 +18,12 @@ function SkincareProduct() {
 
   return (
 
-    <div className="SkincareProduct">
+    <div className="skincare-product">
         <h1>Skincare Product</h1>
     </div>
 
 
-    // <div className="App">
+    // <div className="app">
     //   {/* just display the products list for now  */}
     //   <h1> Products List </h1>
     //   {products.map((item, index) => {

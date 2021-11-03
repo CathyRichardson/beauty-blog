@@ -1,6 +1,7 @@
 // import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './SkincareProductList.scss'
 
 function SkincareProductsList() {
 
@@ -18,13 +19,20 @@ function SkincareProductsList() {
 
     return (
 
-        <div className="SkincareProduct">
+        <main className="skincare-product-list">
             <h1>Skincare Products List</h1>
             {/* just display the products list for now  */}
-            {products.map((item, index) => {
-                return <p key={index}>{item.name}, ${item.price} {item.size}</p>
-            })}
-        </div>
+            <section className="product-list">
+                {products.map((item, index) => {
+                    return (
+                        <div className="product" key={index}>
+                            <h2>{item.type}</h2>
+                            <h3>{item.name}</h3>
+                            <img src={item.image} alt="skincare product" className="product-image" />
+                        </div>)
+                })}
+            </section>
+        </main>
 
 
     );

@@ -1,9 +1,11 @@
+$app-background: #f7f5f8;
 
 .App {
   text-align: center;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  background-color: $app-background;
 }
 
 

@@ -5,7 +5,7 @@ function Haircare() {
 
   return (
 
-    <div className="Haircare">
+    <div className="haircare">
         <h1>Haircare Coming Soon</h1>
     </div>
 

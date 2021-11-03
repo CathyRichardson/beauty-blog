@@ -1,0 +1,28 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 6%;
+  min-width: 350px;
+}
+
+.product {
+  margin: 5px;
+  height: 420px;
+  width: 300px;
+  background-color: white;
+  position: relative;
+}
+
+.product-image {
+  max-height: 300px;
+  max-width: 200px;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: normal;
+}

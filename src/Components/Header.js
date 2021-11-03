@@ -156,7 +156,7 @@ function Header(props) {
                     isOpen={showRegisterModal}
                     contentLabel="Register Modal"
                     onRequestClose={handleCloseRegisterModal}
-                    className="Modal"
+                    className="modal"
                 >
                     <h2>Register</h2>
                     <label>

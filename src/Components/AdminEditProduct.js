@@ -18,12 +18,12 @@ function AdminEditProduct() {
 
     return (
 
-        <div className="AdminEditProduct">
+        <div className="admin-edit-product">
             <h1>Admin Edit Product</h1>
         </div>
 
 
-        // <div className="App">
+        // <div className="app">
         //   {/* just display the products list for now  */}
         //   <h1> Products List </h1>
         //   {products.map((item, index) => {

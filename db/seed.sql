@@ -58,7 +58,7 @@ VALUES
 ('https://target.scene7.com/is/image/Target/GUEST_cecc633a-d524-47c4-8376-373323ac50f6?fmt=webp&wid=1400&qlt=80',
 'Acure Seriously Soothing Blue Tansy Night Oil', 'Facial Oil', 12.99, '1 fl. oz.','Very hydrating and healing facial oil', true),
 
-('https://cdn.shopify.com/s/files/1/0251/2184/9419/products/face-original_720x.png?v=1588194055',
+('https://static.thcdn.com/images/large/webp//productimg/1600/1600/11814869-9924866362390772.jpg',
 'Colorescience Sunforgettable Total Protection Face Shield', 'Facial SPF', 39.00, '1 fl. oz.','Hydrating SPF with a tint that is good for fair skin', true),
 
 ('https://www.aquaphorus.com/wp-content/uploads/2016/06/healing-1_75_ver_2.jpg',

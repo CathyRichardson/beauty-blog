@@ -5,7 +5,7 @@ function Makeup() {
 
   return (
 
-    <div className="Makeup">
+    <div className="makeup">
         <h1>Makeup Coming Soon</h1>
     </div>
 
