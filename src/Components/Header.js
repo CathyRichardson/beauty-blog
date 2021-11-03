@@ -135,7 +135,7 @@ function Header(props) {
                     isOpen={showSignInModal}
                     contentLabel="Sign In Modal"
                     onRequestClose={handleCloseSignInModal}
-                    className="Modal"
+                    className="modal"
                 >
                     <h2>Sign In</h2>
                     <label>
