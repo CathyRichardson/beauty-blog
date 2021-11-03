@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import '../App.scss';
+import './Header.scss';
 
 function Nav() {
 

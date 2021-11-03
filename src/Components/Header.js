@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import ReactModal from 'react-modal';
 import axios from 'axios'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { saveUserData, clearUserData } from '../redux/userReducer';
 import routes from '../routes';
 import Nav from './Nav';
-import '../App.scss';
+import './Header.scss';
 import logo from '../images/BeautyLogo.png';
 
 
@@ -124,16 +125,17 @@ function Header(props) {
         <div>
             <header>
                 <div className="header-flex">
-                <img src={logo} alt="beauty logo" className="beauty-logo" />
-                <a onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</a>
-                <p className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
-                <a onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</a>
+                    <Link to='/beauty'><img src={logo} alt="beauty logo" className="beauty-logo" /></Link>
+                    <a onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</a>
+                    <p className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
+                    <a onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</a>
                 </div>
 
                 <ReactModal
                     isOpen={showSignInModal}
                     contentLabel="Sign In Modal"
                     onRequestClose={handleCloseSignInModal}
+                    className="Modal"
                 >
                     <h2>Sign In</h2>
                     <label>
@@ -145,6 +147,7 @@ function Header(props) {
                         <input type="password" onChange={handlePasswordChange} value={password} />
                     </label>
                     <button onClick={handleSignIn}>Sign In</button>
+                    <hr />
                     <button onClick={handleOpenRegisterModal}>Register</button>
                     <button onClick={handleCloseSignInModal}>Cancel</button>
                 </ReactModal>
@@ -153,6 +156,7 @@ function Header(props) {
                     isOpen={showRegisterModal}
                     contentLabel="Register Modal"
                     onRequestClose={handleCloseRegisterModal}
+                    className="Modal"
                 >
                     <h2>Register</h2>
                     <label>

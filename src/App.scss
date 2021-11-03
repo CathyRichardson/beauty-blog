@@ -1,4 +1,3 @@
-$app-background: #f7f5f8;
 
 .App {
   text-align: center;
@@ -7,77 +6,22 @@ $app-background: #f7f5f8;
   box-sizing: border-box;
 }
 
-header {
-  // background-image: url("./images/lemonhero.jpg");
-  // height: 15vh;
-  // background-position: top;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  background-color: #fff;
 
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
-header {
-  .sign-in {
-    font-weight: bold;
-    color: #4a3b54;
-    cursor: pointer;
-    font-size: 15px;
-  }
-  .sign-in:hover {
-    color: #556177;
-  }
-  .sign-in-hidden{
-    // visibility: hidden;
-    display: none;
-  }
+
+
+button {
+  background-color: #4a3b54;
+  border: none;
+  color: #f7f5f8;
+  padding: 10px 10px;
+  margin: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+
 }
 
-.beauty-logo {
-  height: 8vh;
+button:hover {
+  background-color: #a81e46;
+  color: white;
 }
-
-nav {
-  margin: 0 auto;
-  padding: 7px 0px;
-  background-color: $app-background;
-}
-
-.nav-link {
-  margin: 20px;
-  color: #4a3b54;
-  text-decoration: none;
-  // padding: 20px;
-}
-
-.nav-link:hover {
-  border-bottom: 2px solid #4a3b54;
-  cursor: pointer;
-}
-
-.header-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 10vh;
-  margin: 0 15px;
-}
-
-// button {
-//   background-color: transparent;
-//   border: none;
-//   color: black;
-//   padding: 10px 10px;
-//   margin: 5px;
-//   width: 15%;
-//   text-align: center;
-//   text-transform: uppercase;
-//   font-size: 12px;
-// }
-
-// button:hover {
-//   background-color: #a81e46;
-//   color: white;
-// }
