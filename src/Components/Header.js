@@ -23,18 +23,23 @@ function Header(props) {
     const [email, setEmail] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
-    useEffect(async () => {
-        try {
-            //How can I keep the username from flickering on page refresh?
-            const { data } = await axios.get('/api/auth/user');
-            props.saveUserData(data);
-        } catch (err) {
-            if (err.response.status == 404) {
-                console.log('no logged in user found')
-            } else {
-                console.log(err);
+    useEffect(() => {
+
+        const getData = async () => {
+            try {
+                //How can I keep the username from flickering on page refresh?
+                const { data } = await axios.get('/api/auth/user');
+                props.saveUserData(data);
+            } catch (err) {
+                if (err.response.status == 404) {
+                    console.log('no logged in user found')
+                } else {
+                    console.log(err);
+                }
             }
         }
+
+        getData();
     }, []);
 
     const handleOpenSignInModal = () => {

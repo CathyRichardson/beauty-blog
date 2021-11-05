@@ -7,14 +7,21 @@ function SkincareProductsList() {
 
     const [products, setProducts] = useState([])
 
-    useEffect(async () => {
-        try {
-            // try getting all the products to show frontend is connecting to backend
-            const { data } = await axios.get(`/api/skincare/products`);
-            setProducts(data);
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+
+        const getData = async () => {
+            try {
+                // try getting all the products to show frontend is connecting to backend
+                // const { data } = await axios.get(`/api/skincare/products`);
+                // setProducts(data);
+                const result = await axios.get(`/api/skincare/products`);
+                setProducts(result.data);
+            } catch (error) {
+                console.log(error)
+            }
         }
+
+        getData();
     }, [])
 
     return (

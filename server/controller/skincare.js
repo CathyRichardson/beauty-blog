@@ -23,7 +23,6 @@ const getAllProducts = async (req, res) => {
 const getProduct = async (req, res) => {
   const db = req.app.get('db');
   try {
-    console.log("we're in get product")
     const result = await db.products.get_product(req.params.id);
     const currProduct = result[0];   //massive db queries return an array. 
         if (!currProduct) {

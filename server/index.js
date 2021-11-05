@@ -40,7 +40,7 @@ app.get('/api/auth/user', getUser);
 
 
 //skincare endpoints
-app.get('/api/skincare/comment/:id', getComments);
+app.get('/api/skincare/comments/:id', getComments);
 app.get('/api/skincare/products', getAllProducts);
 app.get('/api/skincare/products/:id', getProduct);
 
