@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function SkincareProduct(props) {
 
-  // const [products, setProducts] = useState([])
+  const [product, setProduct] = useState([])
 
   // useEffect(async () => {
   //   try {
@@ -15,6 +15,7 @@ function SkincareProduct(props) {
   //     console.log(error)
   //   }
   // }, [])
+
   return (
     <div className="skincare-product">
         <h1>Skincare Product</h1>
