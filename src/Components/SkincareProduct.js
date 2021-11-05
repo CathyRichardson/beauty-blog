@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function SkincareProduct() {
+function SkincareProduct(props) {
 
   // const [products, setProducts] = useState([])
 
@@ -15,11 +15,10 @@ function SkincareProduct() {
   //     console.log(error)
   //   }
   // }, [])
-
   return (
-
     <div className="skincare-product">
         <h1>Skincare Product</h1>
+        <h2>product id: {props.match.params.id}</h2>
     </div>
 
 

@@ -12,7 +12,7 @@ import SkincareProductsList from "./Components/SkincareProductsList";
 export default (
     <Switch>
         <Route path='/beauty/skincare/admin' component={AdminEditProduct} />
-        <Route path='/beauty/skincare/reviews' component={SkincareProduct} />
+        <Route path='/beauty/skincare/reviews/:id' component={SkincareProduct} />
         <Route path='/beauty/skincare' component={SkincareProductsList} />
         <Route path='/beauty/haircare' component={Haircare} />
         <Route path='/beauty/makeup' component={Makeup} />
