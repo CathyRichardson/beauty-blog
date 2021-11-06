@@ -4,9 +4,20 @@ import axios from 'axios'
 
 function SkincareProduct(props) {
 
-  // const [product, setProduct] = useState({});
-  // const [comments, setComments] = useState([])
-  const [productData, setProductData] = useState({ product: {}, comments: [] })
+  const [productData, setProductData] = useState({
+    // provide default values so product keys are defined
+    product: {
+      id: 0,
+      image: null,
+      name: '',
+      type: '',
+      price: 0.0,
+      size: '',
+      review: '',
+      isRecommended: false
+    },
+    comments: []
+  })
 
   useEffect(() => {
 
@@ -14,14 +25,19 @@ function SkincareProduct(props) {
       try {
         // get the product
         const currProduct = await axios.get(`/api/skincare/products/${props.match.params.id}`);
-        // setProduct(currProduct.data);
+
         // get the comments
         const currComments = await axios.get(`/api/skincare/comments/${props.match.params.id}`);
-        //  setComments(currComments.data);
+
+        // save to component state
+        const { id, image, name, type, price, size, review, is_recommended } = currProduct.data;
         setProductData({
-          product: currProduct.data,
+          product: {
+            id, image, name, type, price, size, review, isRecommended: is_recommended //
+          },
           comments: currComments.data
         })
+
       } catch (error) {
         console.log(error)
       }
@@ -30,13 +46,22 @@ function SkincareProduct(props) {
     getData();
   }, [])
 
+  // destructure to use in JSX of the return, below
+  const { image, type, price, size, review, isRecommended } = productData.product;
+
   return (
     <div className="skincare-product">
-      <h1>Skincare Product</h1>
-      <h2>product: {productData.product.name}</h2>
-      <h3>first comment's user: {productData.comments[0]?.user}</h3>
-      {/* <h3>first comment's user: {productData.comments[0].is_recommended}</h3> */}
-      <h3>comments length: {productData.comments.length}</h3>
+
+      <h1>{productData.product.name}</h1>
+      <img src={image} alt="skincare product" className="product-image" />
+      <h4>Type: {type}</h4>
+      <h4>Price: {price}</h4>
+      <h4>Size: {size}</h4>
+      <h4>Review: {review}</h4>
+      <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
+      <h4>first comment's user: {productData.comments[0]?.user}</h4>
+
+      <h4>comments length: {productData.comments.length}</h4>
     </div>
   );
 }
