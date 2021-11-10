@@ -19,10 +19,10 @@ CREATE TABLE skincare_product (
 
 CREATE TABLE skincare_comment (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES beauty_user(id),
-    product_id INTEGER REFERENCES skincare_product(id),
-    review TEXT,
-    is_recommended BOOLEAN
+    user_id INTEGER REFERENCES beauty_user(id) NOT NULL,
+    product_id INTEGER REFERENCES skincare_product(id) NOT NULL,
+    review TEXT NOT NULL,
+    is_recommended BOOLEAN NOT NULL
 ); 
 
 

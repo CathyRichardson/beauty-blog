@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './SkincareProduct.scss';
 
 function SkincareEditReview(props) {
@@ -63,10 +64,8 @@ function SkincareEditReview(props) {
 
     const handleSubmit = async () => {
         try {
-            console.log("review comment: ", reviewComment);
-            console.log("user recommend: ", userRecommended);
             const body = {
-                userId: 4,// TODO: get user Id
+                userId: props.user.id,
                 productId: productData.id,
                 reviewComment,
                 userRecommended,
@@ -86,9 +85,10 @@ function SkincareEditReview(props) {
         { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
     // destructure to use in JSX of the return, below
-    const { image, type, price, size} = productData;
+    const { image, type, price, size } = productData;
 
     return (
+        //TODO if no props.user.id send to Login
         <div className="skincare-product-edit">
 
             <h1>Edit Page</h1>
@@ -110,4 +110,12 @@ function SkincareEditReview(props) {
     );
 }
 
-export default SkincareEditReview;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+
+export default connect(mapStateToProps)(SkincareEditReview);
+
