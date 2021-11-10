@@ -1,7 +1,7 @@
 // import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './SkincareProduct.scss';
 
 function SkincareEditReview(props) {
@@ -18,7 +18,10 @@ function SkincareEditReview(props) {
             review: '',
             isRecommended: false
         },
-        comments: []
+        review: {
+            comment: '',
+            isRecommended: false
+        }
     })
 
     useEffect(() => {
@@ -28,12 +31,12 @@ function SkincareEditReview(props) {
                 // get the product
                 let currProduct
                 if (props.location.state) {
-                  currProduct = props.location.state;
+                    currProduct = props.location.state;
                 } else {
-                  const result = await axios.get(`/api/skincare/products/${props.match.params.id}`);
-                  currProduct = result.data;
+                    const result = await axios.get(`/api/skincare/products/${props.match.params.id}`);
+                    currProduct = result.data;
                 }
-            
+
                 // save to component state
                 const { id, image, name, type, price, size, review, is_recommended } = currProduct;
                 setProductData({
@@ -51,34 +54,33 @@ function SkincareEditReview(props) {
         getData();
     }, [])
 
+    const priceFormatter = new Intl.NumberFormat('en-US',
+        { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+
     // destructure to use in JSX of the return, below
     const { image, type, price, size, review, isRecommended } = productData.product;
 
     return (
-        <div className="skincare-product">
+        <div className="skincare-product-edit">
 
             <h1>Edit Page</h1>
             <h1>{productData.product.name}</h1>
             <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
             <h4>Type: {type}</h4>
-            <h4>Price: {price}</h4>
+            <h4>Price: {priceFormatter.format(price)}</h4>
             <h4>Size: {size}</h4>
-            <h4>Review: {review}</h4>
-            <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
 
-            <h2>Reviews:</h2>
+            <h2>Add Your Review:</h2>
+            <textarea rows="5" cols="80" required maxlength="500"></textarea>
+            <input type="checkbox" id="recommended" />
+            <label for="recommended">Yes! I recommend this product</label>
             <button>Submit</button>
-            {/* <section className="product-reviews">
-                {productData.comments.map((item) => {
-                    const { user, review, is_recommended } = item;
-                    return (
-                        <div className="product-reviews-indiv">
-                            <h2>User Name: {user}</h2>
-                            <p>{review}</p>
-                            <h3>Recommended: {is_recommended ? 'yes' : 'no'}</h3>
-                        </div>)
-                })}
-            </section> */}
+            <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
+                <button>Cancel</button>
+            </Link>
+            <section className="user-review-edit">
+
+            </section>
         </div>
     );
 }

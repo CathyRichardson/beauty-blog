@@ -53,6 +53,9 @@ function SkincareProduct(props) {
     getData();
   }, [props.location.state, props.match.params.id])
 
+  const priceFormatter = new Intl.NumberFormat('en-US',
+    { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+
   // destructure to use in JSX of the return, below
   const { id, image, type, price, size, review, isRecommended } = productData.product;
 
@@ -62,20 +65,20 @@ function SkincareProduct(props) {
       <h1>{productData.product.name}</h1>
       <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
       <h4>Type: {type}</h4>
-      <h4>Price: {price}</h4>
+      <h4>Price: {priceFormatter.format(price)}</h4>
       <h4>Size: {size}</h4>
       <h4>Review: {review}</h4>
       <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
 
       <h2>Reviews:</h2>
-      <Link 
-            to={{
-              pathname: `/beauty/skincare/reviews/edit/${id}`,
-              state: productData.product,
-          }}
-          className="product"
-          key={id}
-        ><button>Add a Review</button></Link>
+      <Link
+        to={{
+          pathname: `/beauty/skincare/reviews/edit/${id}`,
+          state: productData.product,
+        }}
+        className="product"
+        key={id}
+      ><button>Add a Review</button></Link>
       <section className="product-reviews">
         {productData.comments.map((comment) => {
           const { user, review, is_recommended } = comment;
