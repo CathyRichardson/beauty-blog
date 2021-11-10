@@ -6,9 +6,9 @@ import './SkincareProduct.scss';
 
 function SkincareEditReview(props) {
 
-    const [productData, setProductData] = useState({
+    const [productData, setProductData] = useState(
         // provide default values so product keys are defined
-        product: {
+        {
             id: 0,
             image: null,
             name: '',
@@ -17,12 +17,10 @@ function SkincareEditReview(props) {
             size: '',
             review: '',
             isRecommended: false
-        },
-        review: {
-            comment: '',
-            isRecommended: false
         }
-    })
+    )
+    const [reviewComment, setReviewComment] = useState('');
+    const [userRecommended, setUserRecommended] = useState(false);
 
     useEffect(() => {
 
@@ -39,12 +37,11 @@ function SkincareEditReview(props) {
 
                 // save to component state
                 const { id, image, name, type, price, size, review, is_recommended } = currProduct;
-                setProductData({
-                    product: {
+                setProductData(
+                    {
                         id, image, name, type, price, size, review, isRecommended: is_recommended
-                    },
-                    // comments: currComments.data
-                })
+                    }
+                )
 
             } catch (error) {
                 console.log(error)
@@ -54,33 +51,61 @@ function SkincareEditReview(props) {
         getData();
     }, [])
 
+    const handleReviewChange = (event) => {
+        const { value } = event.target;
+        setReviewComment(value);
+    }
+
+    const handleUserRecommended = (event) => {
+        const { checked } = event.target;
+        setUserRecommended(checked);
+    }
+
+    const handleSubmit = async () => {
+        try {
+            console.log("review comment: ", reviewComment);
+            console.log("user recommend: ", userRecommended);
+            const body = {
+                userId: 4,// TODO: get user Id
+                productId: productData.id,
+                reviewComment,
+                userRecommended,
+            }
+            await axios.post('/api/skincare/comments', body);
+            props.history.push(`/beauty/skincare/reviews/${productData.id}`)
+        } catch (err) {
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
+        }
+    }
+
     const priceFormatter = new Intl.NumberFormat('en-US',
         { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
     // destructure to use in JSX of the return, below
-    const { image, type, price, size, review, isRecommended } = productData.product;
+    const { image, type, price, size} = productData;
 
     return (
         <div className="skincare-product-edit">
 
             <h1>Edit Page</h1>
-            <h1>{productData.product.name}</h1>
-            <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
+            <h1>{productData.name}</h1>
+            <img src={image} alt={`skincare product: ${productData.name}`} className="product-image" />
             <h4>Type: {type}</h4>
             <h4>Price: {priceFormatter.format(price)}</h4>
             <h4>Size: {size}</h4>
 
             <h2>Add Your Review:</h2>
-            <textarea rows="5" cols="80" required maxlength="500"></textarea>
-            <input type="checkbox" id="recommended" />
+            <textarea onChange={handleReviewChange} rows="5" cols="80" required maxlength="500"></textarea>
+            <input onChange={handleUserRecommended} type="checkbox" id="recommended" />
             <label for="recommended">Yes! I recommend this product</label>
-            <button>Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
             <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
                 <button>Cancel</button>
             </Link>
-            <section className="user-review-edit">
-
-            </section>
         </div>
     );
 }
