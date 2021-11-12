@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './SkincareProduct.scss';
 
 function SkincareProduct(props) {
@@ -42,7 +43,7 @@ function SkincareProduct(props) {
           product: {
             id, image, name, type, price, size, review, isRecommended: is_recommended
           },
-          comments: currComments.data
+          comments: commentsFromDbComments(currComments.data)
         })
 
       } catch (err) {
@@ -65,7 +66,7 @@ function SkincareProduct(props) {
       // save to component state
       setProductData({
         ...productData,
-        comments: currComments.data
+        comments: commentsFromDbComments(currComments.data)
       })
 
     } catch (err) {
@@ -88,6 +89,19 @@ function SkincareProduct(props) {
         alert(err);
       }
     }
+  }
+
+  // convert database column names to js names
+  const commentsFromDbComments = (dbComments) => {
+    return dbComments.map(({ id, user_id, user, review, is_recommended }) => {
+      return {
+        id,
+        userId: user_id,
+        user,
+        review,
+        isRecommended: is_recommended
+      }
+    })
   }
 
   const priceFormatter = new Intl.NumberFormat('en-US',
@@ -118,13 +132,16 @@ function SkincareProduct(props) {
       ><button>Add a Review</button></Link>
       <section className="product-reviews">
         {productData.comments.map((comment) => {
-          const { user, review, is_recommended } = comment;
+          const { userId, user, review, isRecommended } = comment;
           return (
             <div className="product-reviews-indiv" key={comment.id}>
               <h2>User Name: {user}</h2>
               <p>{review}</p>
-              <h3>Recommended: {is_recommended ? 'yes' : 'no'}</h3>
-              <button onClick={() => handleDeleteReview(comment.id)}>Delete</button>
+              <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
+              {/* // TODO: Need to always show delete for Admin user */}
+              {(props.user.id && props.user.id) === userId ?
+                <button onClick={() => handleDeleteReview(comment.id)}>Delete</button> : null
+              }
             </div>)
         })}
       </section>
@@ -132,4 +149,10 @@ function SkincareProduct(props) {
   );
 }
 
-export default SkincareProduct;
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(SkincareProduct);
