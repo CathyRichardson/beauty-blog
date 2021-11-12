@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { getComments, addComment, getAllProducts, getProduct } = require('./controller/skincare');
-const { register, login, logout, getUser, usersOnly, adminsOnly } =require('./controller/auth');
+const { getComments, addComment, deleteComment, getAllProducts, getProduct } = require('./controller/skincare');
+const { register, login, logout, getUser, usersOnly, adminsOnly } = require('./controller/auth');
 
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
@@ -43,7 +43,7 @@ app.get('/api/auth/user', getUser);
 //skincare comment endpoints
 app.get('/api/skincare/comments/:id', getComments);
 app.post('/api/skincare/comments', usersOnly, addComment);
-// app.delete('/api/skincare/comments/:id', usersOnly, deleteComment);
+app.delete('/api/skincare/comments/:id', usersOnly, deleteComment);
 
 //skincare product endpoints
 // app.post('/api/skincare/products', usersOnly, adminsOnly, addProduct);

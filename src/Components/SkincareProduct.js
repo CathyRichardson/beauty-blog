@@ -45,13 +45,50 @@ function SkincareProduct(props) {
           comments: currComments.data
         })
 
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        if (err.isAxiosError) {
+          console.log(err.response.request.responseText);
+        } else {
+          console.log(err);
+        }
       }
     }
 
     getData();
   }, [props.location.state, props.match.params.id])
+
+  const getComments = async () => {
+    try {
+      // get the comments
+      const currComments = await axios.get(`/api/skincare/comments/${props.match.params.id}`);
+
+      // save to component state
+      setProductData({
+        ...productData,
+        comments: currComments.data
+      })
+
+    } catch (err) {
+      if (err.isAxiosError) {
+        console.log(err.response.request.responseText);
+      } else {
+        console.log(err);
+      }
+    }
+  }
+
+  const handleDeleteReview = async (id) => {
+    try {
+      await axios.delete(`/api/skincare/comments/${id}`);
+      getComments();
+    } catch (err) {
+      if (err.isAxiosError) {
+        alert(err.response.request.responseText);
+      } else {
+        alert(err);
+      }
+    }
+  }
 
   const priceFormatter = new Intl.NumberFormat('en-US',
     { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
@@ -87,6 +124,7 @@ function SkincareProduct(props) {
               <h2>User Name: {user}</h2>
               <p>{review}</p>
               <h3>Recommended: {is_recommended ? 'yes' : 'no'}</h3>
+              <button onClick={() => handleDeleteReview(comment.id)}>Delete</button>
             </div>)
         })}
       </section>
