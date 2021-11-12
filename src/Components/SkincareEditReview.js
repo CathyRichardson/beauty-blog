@@ -88,24 +88,28 @@ function SkincareEditReview(props) {
     const { image, type, price, size } = productData;
 
     return (
-        //TODO if no props.user.id send to Login
-        <div className="skincare-product-edit">
+        <div>
+            <h1>Add Product Review</h1>
+            {!props.user.id ?
+                <p>Please Sign In</p>
+                :
+                <div className="skincare-product-edit">
 
-            <h1>Edit Page</h1>
-            <h1>{productData.name}</h1>
-            <img src={image} alt={`skincare product: ${productData.name}`} className="product-image" />
-            <h4>Type: {type}</h4>
-            <h4>Price: {priceFormatter.format(price)}</h4>
-            <h4>Size: {size}</h4>
+                    <h1>{productData.name}</h1>
+                    <img src={image} alt={`skincare product: ${productData.name}`} className="product-image" />
+                    <h4>Type: {type}</h4>
+                    <h4>Price: {priceFormatter.format(price)}</h4>
+                    <h4>Size: {size}</h4>
 
-            <h2>Add Your Review:</h2>
-            <textarea onChange={handleReviewChange} rows="5" cols="80" required maxlength="500"></textarea>
-            <input onChange={handleUserRecommended} type="checkbox" id="recommended" />
-            <label for="recommended">Yes! I recommend this product</label>
-            <button onClick={handleSubmit}>Submit</button>
-            <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
-                <button>Cancel</button>
-            </Link>
+                    <h2>Add Your Review:</h2>
+                    <textarea onChange={handleReviewChange} rows="5" cols="80" required maxlength="500"></textarea>
+                    <input onChange={handleUserRecommended} type="checkbox" id="recommended" />
+                    <label for="recommended">Yes! I recommend this product</label>
+                    <button onClick={handleSubmit}>Submit</button>
+                    <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
+                        <button>Cancel</button>
+                    </Link>
+                </div>}
         </div>
     );
 }
