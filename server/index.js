@@ -3,7 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const { getComments, addComment, getAllProducts, getProduct } = require('./controller/skincare');
-const { register, login, logout, getUser } =require('./controller/auth');
+const { register, login, logout, getUser, usersOnly, adminsOnly } =require('./controller/auth');
 
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
@@ -40,9 +40,15 @@ app.post('/api/auth/logout', logout);
 app.get('/api/auth/user', getUser);
 
 
-//skincare endpoints
+//skincare comment endpoints
 app.get('/api/skincare/comments/:id', getComments);
-app.post('/api/skincare/comments', addComment);
+app.post('/api/skincare/comments', usersOnly, addComment);
+// app.delete('/api/skincare/comments/:id', usersOnly, deleteComment);
+
+//skincare product endpoints
+// app.post('/api/skincare/products', usersOnly, adminsOnly, addProduct);
+// app.put('/api/skincare/products/:id', usersOnly, adminsOnly, updateProduct);
+// app.delete('/api/skincare/products/:id', usersOnly, adminsOnly, deleteProduct);
 app.get('/api/skincare/products', getAllProducts);
 app.get('/api/skincare/products/:id', getProduct);
 
