@@ -80,7 +80,11 @@ function SkincareProduct(props) {
 
   const handleDeleteReview = async (id) => {
     try {
-      await axios.delete(`/api/skincare/comments/${id}`);
+      if (props.user.isAdmin) {
+        await axios.delete(`/api/skincare/comments/${id}/admin`);
+      } else {
+        await axios.delete(`/api/skincare/comments/${id}`);
+      }
       getComments();
     } catch (err) {
       if (err.isAxiosError) {
@@ -138,8 +142,7 @@ function SkincareProduct(props) {
               <h2>User Name: {user}</h2>
               <p>{review}</p>
               <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
-              {/* // TODO: Need to always show delete for Admin user */}
-              {(props.user.id && props.user.id) === userId ?
+              {props.user.id && (props.user.id === userId || props.user.isAdmin) ?
                 <button onClick={() => handleDeleteReview(comment.id)}>Delete</button> : null
               }
             </div>)
