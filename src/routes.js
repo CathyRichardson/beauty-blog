@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import App from "./App";
 import AdminEditProduct from "./Components/AdminEditProduct";
 import Haircare from "./Components/Haircare";
 import Home from "./Components/Home";

@@ -1,85 +1,86 @@
-@import "./base"; 
-
+@import "./base";
 
 header {
-    // background-image: url("./images/lemonhero.jpg");
-    // height: 15vh;
-    // background-position: top;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    background-color: #fff;
-  
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-  }
-  header {
-    .sign-in {
-      font-weight: bold;
-      color: #4a3b54;
-      cursor: pointer;
-      font-size: 15px;
-    }
-    .sign-in:hover {
-      color: #556177;
-    }
-    .sign-in-hidden{
-      // visibility: hidden;
-      display: none;
-    }
-  }
-  
-  .beauty-logo {
-    height: 8vh;
-  }
-  
-  nav {
-    margin: 0 auto;
-    padding: 7px 0px;
-    background-color: $dark-main;
-  }
-  
-  .nav-link {
-    margin: 20px;
-    color: #fff;
-    text-decoration: none;
+  // background-image: url("./images/lemonhero.jpg");
+  // height: 15vh;
+  // background-position: top;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background-color: #fff;
+
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+header {
+  .sign-in {
+    background-color: transparent;
+    border: none;
     font-weight: bold;
-    // padding: 20px;
-  }
-  
-  .nav-link:hover {
-    border-bottom: 2px solid #fff;
+    text-transform: none;
+    color: #4a3b54;
     cursor: pointer;
+    font-size: 15px;
   }
-  
-  .header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    margin: 0 15px;
+  .sign-in:hover {
+    color: #556177;
   }
-  
+  .sign-in-hidden {
+    // visibility: hidden;
+    display: none;
+  }
+}
 
-  .modal {
-    height: 500px;
-    width: 400px;
-    position: relative;
-    top: 50px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: $app-background;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-  }
+.beauty-logo {
+  height: 8vh;
+}
 
-  .modal input {
-      width: 96%;
-      height: 30px;
-  }
+nav {
+  margin: 0 auto;
+  padding: 7px 0px;
+  background-color: $dark-main;
+}
 
-  hr {
-      width: 100%;
-      margin: 20px 0;
-  }
+.nav-link {
+  margin: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  // padding: 20px;
+}
+
+.nav-link:hover {
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  margin: 0 15px;
+}
+
+.modal {
+  height: 500px;
+  width: 400px;
+  position: relative;
+  top: 50px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $app-background;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.modal input {
+  width: 96%;
+  height: 30px;
+}
+
+hr {
+  width: 100%;
+  margin: 20px 0;
+}

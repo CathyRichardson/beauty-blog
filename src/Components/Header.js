@@ -31,10 +31,8 @@ function Header(props) {
                 const { data } = await axios.get('/api/auth/user');
                 props.saveUserData(data);
             } catch (err) {
-                if (err.response.status == 404) {
-                    console.log('no logged in user found')
-                } else {
-                    console.log(err);
+                if (err.response.status !== 404) {
+                    console.log(err)
                 }
             }
         }
@@ -131,9 +129,9 @@ function Header(props) {
             <header>
                 <div className="header-flex">
                     <Link to='/beauty'><img src={logo} alt="beauty logo" className="beauty-logo" /></Link>
-                    <a onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</a>
+                    <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
                     <p className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
-                    <a onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</a>
+                    <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
                 </div>
 
                 <ReactModal
