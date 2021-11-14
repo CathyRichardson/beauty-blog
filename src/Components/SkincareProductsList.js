@@ -12,7 +12,7 @@ function SkincareProductsList() {
         const getData = async () => {
             try {
                 const result = await axios.get(`/api/skincare/products`);
-                setProducts(result.data);
+                setProducts(productsFromDb(result.data));
             } catch (error) {
                 console.log(error)
             }
@@ -20,6 +20,22 @@ function SkincareProductsList() {
 
         getData();
     }, [])
+
+      // convert database column names to js names
+  const productsFromDb = (dbProducts) => {
+    return dbProducts.map(({ id, image, name, type, price, size, review, is_recommended }) => {
+      return {
+        id, 
+        image, 
+        name, 
+        type, 
+        price, 
+        size, 
+        review, 
+        isRecommended: is_recommended
+      }
+    })
+  }
 
     return (
 

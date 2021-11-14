@@ -31,18 +31,18 @@ function SkincareProduct(props) {
           currProduct = props.location.state;
         } else {
           const result = await axios.get(`/api/skincare/products/${props.match.params.id}`);
-          currProduct = result.data;
+          const { id, image, name, type, price, size, review, is_recommended } = result.data;
+          currProduct = {
+            id, image, name, type, price, size, review, isRecommended: is_recommended
+          };
         }
 
         // get the comments
         const currComments = await axios.get(`/api/skincare/comments/${props.match.params.id}`);
 
         // save to component state
-        const { id, image, name, type, price, size, review, is_recommended } = currProduct;
         setProductData({
-          product: {
-            id, image, name, type, price, size, review, isRecommended: is_recommended
-          },
+          product: currProduct,
           comments: commentsFromDbComments(currComments.data)
         })
 
@@ -95,6 +95,7 @@ function SkincareProduct(props) {
     }
   }
 
+
   // convert database column names to js names
   const commentsFromDbComments = (dbComments) => {
     return dbComments.map(({ id, user_id, user, review, is_recommended }) => {
@@ -118,6 +119,17 @@ function SkincareProduct(props) {
     <div className="skincare-product">
 
       <h1>{productData.product.name}</h1>
+      {props.user.id && props.user.isAdmin ?  
+      <Link
+        to={{
+          pathname: `/beauty/skincare/admin/${id}`,
+          state: productData.product,
+        }}
+      >
+        <button>Admin Edit</button>
+      </Link> 
+      : null }
+     
       <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
       <h4>Type: {type}</h4>
       <h4>Price: {priceFormatter.format(price)}</h4>
@@ -133,7 +145,9 @@ function SkincareProduct(props) {
         }}
         className="product"
         key={id}
-      ><button>Add a Review</button></Link>
+      >
+        <button>Add a Review</button>
+      </Link>
       <section className="product-reviews">
         {productData.comments.map((comment) => {
           const { userId, user, review, isRecommended } = comment;
