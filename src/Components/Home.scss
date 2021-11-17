@@ -1,0 +1,35 @@
+.home {
+  main {
+    text-align: left;
+    height: 65vh;
+    padding: 10% 3%;
+    box-sizing: border-box;
+    background-image: url("../images/serumHero.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+  }
+}
+
+h2 {
+    padding-top: 3%;
+}
+
+.three-links{
+    // display: flex;
+    // justify-content: center;
+    padding: 1%;
+    img{
+        height: 200px;
+        width: 200px;
+        margin: 2%
+    }
+    h4{
+        display: inline;
+        margin: 2%
+    }
+}
