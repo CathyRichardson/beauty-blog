@@ -33,17 +33,13 @@ function SkincareEditReview(props) {
                     currProduct = props.location.state;
                 } else {
                     const result = await axios.get(`/api/skincare/products/${props.match.params.id}`);
-                    currProduct = result.data;
-                }
-
-                // save to component state
-                const { id, image, name, type, price, size, review, is_recommended } = currProduct;
-                setProductData(
-                    {
+                    const { id, image, name, type, price, size, review, is_recommended } = result.data;
+                    currProduct = {
                         id, image, name, type, price, size, review, isRecommended: is_recommended
-                    }
-                )
-
+                    };
+                }
+                // save to component state
+                setProductData(currProduct);
             } catch (error) {
                 console.log(error)
             }

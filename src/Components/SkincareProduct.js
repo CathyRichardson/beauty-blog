@@ -119,17 +119,17 @@ function SkincareProduct(props) {
     <div className="skincare-product">
 
       <h1>{productData.product.name}</h1>
-      {props.user.id && props.user.isAdmin ?  
-      <Link
-        to={{
-          pathname: `/beauty/skincare/admin/${id}`,
-          state: productData.product,
-        }}
-      >
-        <button>Admin Edit</button>
-      </Link> 
-      : null }
-     
+      {props.user.id && props.user.isAdmin ?
+        <Link
+          to={{
+            pathname: `/beauty/skincare/admin/${id}`,
+            state: productData.product,
+          }}
+        >
+          <button>Admin Edit</button>
+        </Link>
+        : null}
+
       <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
       <h4>Type: {type}</h4>
       <h4>Price: {priceFormatter.format(price)}</h4>
@@ -143,8 +143,6 @@ function SkincareProduct(props) {
           pathname: `/beauty/skincare/reviews/edit/${id}`,
           state: productData.product,
         }}
-        className="product"
-        key={id}
       >
         <button>Add a Review</button>
       </Link>
