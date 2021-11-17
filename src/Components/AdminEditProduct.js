@@ -69,6 +69,7 @@ function AdminEditProduct(props) {
                     <h4>Size: {size}</h4>
                     <h4>Review: {review}</h4>
                     <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
+                    <button>Submit</button>
                 </div>
             }
         </div>

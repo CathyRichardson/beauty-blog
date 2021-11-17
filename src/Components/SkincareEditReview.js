@@ -96,7 +96,7 @@ function SkincareEditReview(props) {
                 <div className="skincare-product-edit">
 
                     <h1>{productData.name}</h1>
-                    <img src={image} alt={`skincare product: ${productData.name}`} className="product-image" />
+                    <img src={image} alt={`skincare product: ${productData.name}`} className="review-product-image" />
                     <h4>Type: {type}</h4>
                     <h4>Price: {priceFormatter.format(price)}</h4>
                     <h4>Size: {size}</h4>
