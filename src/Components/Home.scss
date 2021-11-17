@@ -9,27 +9,28 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #fff;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-  }
+   }
 }
 
 h2 {
-    padding-top: 3%;
+  padding-top: 3%;
+  font-size: 28px;
 }
 
-.three-links{
-    // display: flex;
-    // justify-content: center;
-    padding: 1%;
-    img{
-        height: 200px;
-        width: 200px;
-        margin: 2%
-    }
-    h4{
-        display: inline;
-        margin: 2%
-    }
+.three-links {
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+  img {
+    height: 300px;
+    width: 300px;
+  }
+  h4 {
+    padding-bottom: 3%;
+    font-size: 16px;
+  }
+}
+
+.home-link {
+    text-decoration: none;
 }

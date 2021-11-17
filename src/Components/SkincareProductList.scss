@@ -1,7 +1,7 @@
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 6%;
+  margin: 0 0 3% 6%;
   min-width: 350px;
 }
 
@@ -13,19 +13,18 @@
   position: relative;
   color: #4a3b54;
   text-decoration: none;
+
+  h2 {
+    font-size: 15px;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: normal;
+  }
 }
 
 .product-image {
-  max-height: 300px;
+  max-height: 225px;
   max-width: 200px;
-}
-
-h2 {
-  font-size: 15px;
-}
-
-h3 {
-  font-size: 13px;
-  font-weight: normal;
-
 }

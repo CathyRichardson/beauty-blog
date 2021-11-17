@@ -4,7 +4,6 @@ import axios from 'axios'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { saveUserData, clearUserData } from '../redux/userReducer';
-import routes from '../routes';
 import Nav from './Nav';
 import './Header.scss';
 import logo from '../images/BeautyLogo.png';
@@ -185,8 +184,7 @@ function Header(props) {
 
                 <Nav />
             </header>
-            {routes}
-        </div>
+          </div>
     );
 }
 
