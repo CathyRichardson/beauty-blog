@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { getAllProducts, getProduct, updateProduct, deleteProduct } = require('./controller/skincareProduct');
+const { getAllProducts, getProduct, updateProduct, deleteProduct, addProduct } = require('./controller/skincareProduct');
 const { getComments, addComment, deleteComment, adminDeleteComment } = require('./controller/skincareComment');
 const { register, login, logout, getUser, usersOnly, adminsOnly } = require('./controller/auth');
 
@@ -48,7 +48,7 @@ app.delete('/api/skincare/comments/:id', usersOnly, deleteComment);
 app.delete('/api/skincare/comments/:id/admin', usersOnly, adminsOnly, adminDeleteComment);
 
 //skincare product endpoints
-// app.post('/api/skincare/products', usersOnly, adminsOnly, addProduct);
+app.post('/api/skincare/products', usersOnly, adminsOnly, addProduct);
 app.put('/api/skincare/products/:id', usersOnly, adminsOnly, updateProduct);
 app.delete('/api/skincare/products/:id', usersOnly, adminsOnly, deleteProduct);
 app.get('/api/skincare/products', getAllProducts);
