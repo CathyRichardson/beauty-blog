@@ -48,11 +48,39 @@ function AdminEditProduct(props) {
         getData();
     }, [props.location.state, props.match.params.id])
 
+
+    const handleChange = (event) => {
+        const { name, value, checked } = event.target;
+        if (name === "isRecommended") {
+            setProductData({ ...productData, isRecommended: checked });
+        } else {
+            setProductData({ ...productData, [name]: value });
+        }
+    }
+
+    const handleSubmit = async (event) => {
+        try {
+            event.preventDefault();
+            const { image, name, type, price, size, review, isRecommended } = productData;
+            const body = { image, name, type, price, size, review, isRecommended };
+            // update the product
+            await axios.put(`/api/skincare/products/${props.match.params.id}`, body);
+            // return to skincare products list page
+            props.history.push('/beauty/skincare');
+        } catch (err) {
+            if (err.isAxiosError) {
+                console.log(err.response.request.responseText);
+            } else {
+                console.log(err);
+            }
+        }
+    }
+
     const priceFormatter = new Intl.NumberFormat('en-US',
         { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
     // destructure to use in JSX of the return, below
-    const { id, image, type, price, size, review, isRecommended } = productData;
+    const { image, name, type, price, size, review, isRecommended } = productData;
 
     return (
         <div className="skincare-product">
@@ -61,16 +89,43 @@ function AdminEditProduct(props) {
             {!props.user.id || !props.user.isAdmin ?
                 <p>Please Sign In as an Admin</p>
                 :
-                <div>
-                    <h2>{productData.name}</h2>
-                    <img src={image} alt={`skincare product: ${productData.name}`} className="product-image" />
-                    <h4>Type: {type}</h4>
-                    <h4>Price: {priceFormatter.format(price)}</h4>
-                    <h4>Size: {size}</h4>
-                    <h4>Review: {review}</h4>
-                    <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
-                    <button>Submit</button>
-                </div>
+                <form onSubmit={handleSubmit} className="admin-edit-form">
+                    <img src={image} alt={`skincare product: ${name}`} className="product-image" />
+                    <label>
+                        Product Image:
+                        <input type="url" name="image" value={image} required onChange={handleChange} />
+                    </label>
+                    <label>
+                        Product Name:
+                        <input type="text" name="name" value={name} required onChange={handleChange} />
+                    </label>
+
+                    <label>
+                        Product Type:
+                        <input type="text" name="type" value={type} required onChange={handleChange} />
+                    </label>
+
+                    <label>
+                        Product Price ($):
+                        <input type="number" min="0" step="0.01" name="price" value={price} required onChange={handleChange} />
+                    </label>
+                    <label>
+                        Product Size:
+                        <input type="text" name="size" value={size} required onChange={handleChange} />
+                    </label>
+                    <label>
+                        Product Review:
+                        <textarea name="review" value={review} rows="5" cols="80" maxlength="500" required onChange={handleChange} ></textarea>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="isRecommended" checked={isRecommended} onChange={handleChange} />
+                        Yes! I recommend this product
+                    </label>
+                    <Link to={`/beauty/skincare`} >
+                        <button>Cancel</button>
+                    </Link>
+                    <input type="submit" value="Submit" className="admin-edit-submit" />
+                </form>
             }
         </div>
     );
