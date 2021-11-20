@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './SkincareProductsList.scss'
 
-function SkincareProductsList() {
+function SkincareProductsList(props) {
 
     const [products, setProducts] = useState([])
 
@@ -21,27 +22,36 @@ function SkincareProductsList() {
         getData();
     }, [])
 
-      // convert database column names to js names
-  const productsFromDb = (dbProducts) => {
-    return dbProducts.map(({ id, image, name, type, price, size, review, is_recommended }) => {
-      return {
-        id, 
-        image, 
-        name, 
-        type, 
-        price, 
-        size, 
-        review, 
-        isRecommended: is_recommended
-      }
-    })
-  }
+    // convert database column names to js names
+    const productsFromDb = (dbProducts) => {
+        return dbProducts.map(({ id, image, name, type, price, size, review, is_recommended }) => {
+            return {
+                id,
+                image,
+                name,
+                type,
+                price,
+                size,
+                review,
+                isRecommended: is_recommended
+            }
+        })
+    }
 
     return (
 
         <main className="skincare-product-list">
             <h1>Skincare Products List</h1>
-            {/* just display the products list for now  */}
+            {props.user.id && props.user.isAdmin ?
+                <Link
+                    to={{
+                        pathname: `/beauty/skincare/admin/0`, //id 0 means add item
+                        // state: productData.product,
+                    }}
+                >
+                    <button>Admin Add Product</button>
+                </Link>
+                : null}
             <section className="product-list">
                 {products.map((item) => {
                     const { id, type, name, image } = item;
@@ -66,4 +76,12 @@ function SkincareProductsList() {
     );
 }
 
-export default SkincareProductsList;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+
+export default connect(mapStateToProps)(SkincareProductsList);
+

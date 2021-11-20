@@ -44,10 +44,15 @@ function AdminEditProduct(props) {
                 }
             }
         }
-
-        getData();
+        if (!isAdminAdding()) {
+            getData();
+        }
     }, [props.location.state, props.match.params.id])
 
+    //return true if in add product mode
+    const isAdminAdding = () => {
+        return +props.match.params.id === 0; //if id is 0 we're adding a new product
+    }
 
     const handleChange = (event) => {
         const { name, value, checked } = event.target;
@@ -63,8 +68,13 @@ function AdminEditProduct(props) {
             event.preventDefault();
             const { image, name, type, price, size, review, isRecommended } = productData;
             const body = { image, name, type, price, size, review, isRecommended };
-            // update the product
-            await axios.put(`/api/skincare/products/${props.match.params.id}`, body);
+            if (isAdminAdding()) {
+                //add a new product
+                await axios.post(`/api/skincare/products`, body);
+            } else {
+                // update the product
+                await axios.put(`/api/skincare/products/${props.match.params.id}`, body);
+            }
             // return to skincare products list page
             props.history.push('/beauty/skincare');
         } catch (err) {
@@ -84,13 +94,12 @@ function AdminEditProduct(props) {
 
     return (
         <div className="skincare-product">
-
-            <h1>Admin Edit Product</h1>
+            {isAdminAdding() ? <h1>Admin Add Product</h1> : <h1>Admin Edit Product</h1>}
             {!props.user.id || !props.user.isAdmin ?
                 <p>Please Sign In as an Admin</p>
                 :
                 <form onSubmit={handleSubmit} className="admin-edit-form">
-                    <img src={image} alt={`skincare product: ${name}`} className="product-image" />
+                    {isAdminAdding() ? null : <img src={image} alt={`skincare product: ${name}`} className="product-image" />}
                     <label>
                         Product Image:
                         <input type="url" name="image" value={image} required onChange={handleChange} />
@@ -121,10 +130,10 @@ function AdminEditProduct(props) {
                         <input type="checkbox" name="isRecommended" checked={isRecommended} onChange={handleChange} />
                         Yes! I recommend this product
                     </label>
+                    <input type="submit" value="Submit" className="admin-edit-submit" />
                     <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
                         <button>Cancel</button>
                     </Link>
-                    <input type="submit" value="Submit" className="admin-edit-submit" />
                 </form>
             }
         </div>
