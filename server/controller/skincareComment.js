@@ -40,7 +40,6 @@ const adminDeleteComment = async (req, res) => {
   }
 }
 
-
 module.exports = {
   getComments,
   addComment,

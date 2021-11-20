@@ -34,6 +34,17 @@ const updateProduct = async (req, res) => {
   }
 }
 
+const adminDeleteProductComments = async (req, res, next) => {
+  const db = req.app.get('db');
+  try {
+    //product id and user id
+    await db.products.delete_product_comments(req.params.id, req.session.user.id)
+    next();
+  } catch (e) {
+    res.status(500).send(e);
+  }
+}
+
 const deleteProduct = async (req, res) => {
   const db = req.app.get('db');
   try {
@@ -60,5 +71,6 @@ module.exports = {
   getProduct,
   updateProduct,
   deleteProduct,
-  addProduct
+  addProduct,
+  adminDeleteProductComments
 }

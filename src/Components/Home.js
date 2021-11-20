@@ -34,10 +34,10 @@ function Home() {
           <h4>Haircare</h4>
         </Link>
       </section>
-      <section className="three-links">
+      <section className="overlay">
       <h2>Read reviews before you buy</h2>
       </section>
-      <section className="three-links">
+      <section className="one-pic">
       <h2>Find the best product for all your beauty needs</h2>
       </section>
     </div>
