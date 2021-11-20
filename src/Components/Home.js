@@ -13,7 +13,7 @@ function Home() {
         <p>Find the top skincare curated to your personal taste!</p>
         <Link to='/beauty/skincare'><button>Start Now</button></Link>
       </main>
-      <h2>Read reviews before you buy</h2>
+      <h2>Share Your Experience </h2>
       <section className="three-links">
         <Link to='/beauty/skincare' className="home-link">
           <img className="homepage-square"
@@ -33,6 +33,12 @@ function Home() {
             alt="girl with long curly hair" />
           <h4>Haircare</h4>
         </Link>
+      </section>
+      <section className="three-links">
+      <h2>Read reviews before you buy</h2>
+      </section>
+      <section className="three-links">
+      <h2>Find the best product for all your beauty needs</h2>
       </section>
     </div>
   );

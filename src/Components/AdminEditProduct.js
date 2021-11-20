@@ -121,7 +121,7 @@ function AdminEditProduct(props) {
                         <input type="checkbox" name="isRecommended" checked={isRecommended} onChange={handleChange} />
                         Yes! I recommend this product
                     </label>
-                    <Link to={`/beauty/skincare`} >
+                    <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
                         <button>Cancel</button>
                     </Link>
                     <input type="submit" value="Submit" className="admin-edit-submit" />

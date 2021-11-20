@@ -109,6 +109,23 @@ function SkincareProduct(props) {
     })
   }
 
+  const handleAdminDelete = async (id) => {
+    try {
+      if (props.user.isAdmin) {
+        await axios.delete(`/api/skincare/products/${id}`);
+        props.history.push(`/beauty/skincare`);
+      } else {
+        alert("Only admins can delete");
+      }
+    } catch (err) {
+      if (err.isAxiosError) {
+        alert(err.response.request.responseText);
+      } else {
+        alert(err);
+      }
+    }
+  }
+
   const priceFormatter = new Intl.NumberFormat('en-US',
     { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
@@ -120,14 +137,17 @@ function SkincareProduct(props) {
 
       <h1>{productData.product.name}</h1>
       {props.user.id && props.user.isAdmin ?
-        <Link
-          to={{
-            pathname: `/beauty/skincare/admin/${id}`,
-            state: productData.product,
-          }}
-        >
-          <button>Admin Edit</button>
-        </Link>
+        <div>
+          <Link
+            to={{
+              pathname: `/beauty/skincare/admin/${id}`,
+              state: productData.product,
+            }}
+          >
+            <button>Admin Edit</button>
+          </Link>
+          <button onClick={() => handleAdminDelete(id)}>Admin Delete</button>
+        </div>
         : null}
 
       <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
