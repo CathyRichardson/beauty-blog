@@ -86,6 +86,14 @@ function AdminEditProduct(props) {
         }
     }
 
+    const handleCancel = () => {
+        if (isAdminAdding()) {
+            props.history.push(`/beauty/skincare`);
+        } else {
+            props.history.push(`/beauty/skincare/reviews/${props.match.params.id}`);
+        }
+    }
+
     const priceFormatter = new Intl.NumberFormat('en-US',
         { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
@@ -131,9 +139,7 @@ function AdminEditProduct(props) {
                         Yes! I recommend this product
                     </label>
                     <input type="submit" value="Submit" className="admin-edit-submit" />
-                    <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
-                        <button>Cancel</button>
-                    </Link>
+                    <button onClick={handleCancel}>Cancel</button>
                 </form>
             }
         </div>

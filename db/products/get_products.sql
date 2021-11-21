@@ -1,3 +1,3 @@
 -- Get all products 
 SELECT * FROM skincare_product
-ORDER BY id;
+ORDER BY id DESC;
