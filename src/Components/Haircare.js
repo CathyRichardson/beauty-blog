@@ -1,9 +1,9 @@
 function Haircare() {
 
   return (
-    <div className="haircare">
+    <main className="makeup">
         <h1>Haircare Coming Soon</h1>
-    </div>
+    </main>
   );
 }
 

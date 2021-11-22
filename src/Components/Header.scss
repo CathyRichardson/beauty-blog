@@ -1,17 +1,8 @@
 @import "./base";
 
 header {
-  // background-image: url("./images/lemonhero.jpg");
-  // height: 15vh;
-  // background-position: top;
-  // background-repeat: no-repeat;
-  // background-size: cover;
   background-color: #fff;
-
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
+ }
 header {
   .sign-in {
     background-color: transparent;
@@ -80,7 +71,7 @@ nav {
   height: 30px;
 }
 
-hr {
-  width: 100%;
-  margin: 20px 0;
-}
+// hr {
+//   width: 100%;
+//   margin: 20px 0;
+// }

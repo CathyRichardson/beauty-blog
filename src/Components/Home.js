@@ -1,7 +1,8 @@
 import './Home.scss';
-import makeupSquare from '../images/makeup.jpg'
-import skincareSquare from '../images/manSinkSquare.jpg'
-import hairSquare from '../images/hairSquare.jpg'
+import makeupSquare from '../images/makeupR.jpg'
+import skincareSquare from '../images/manSinkSquareR.jpg'
+import hairSquare from '../images/hairSquareR.jpg'
+import beautyProduct from '../images/bottleAndRoseR.jpg'
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -39,6 +40,9 @@ function Home() {
       </section>
       <section className="one-pic">
       <h2>Find the best product for all your beauty needs</h2>
+      <img className="homepage-one-pic"
+            src={beautyProduct}
+            alt="pump bottle displayed with roses and a rolled up towel to the side" />
       </section>
     </div>
   );

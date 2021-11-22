@@ -4,17 +4,18 @@
     height: 65vh;
     padding: 10% 3%;
     box-sizing: border-box;
-    background-image: url("../images/serumHero.jpg");
+    background-image: url("../images/serumHeroResize.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #fff;
-   }
-}
+  }
 
-h2 {
-  padding-top: 3%;
-  font-size: 20px;
+  h2 {
+    padding: 3% 0 1% 0;
+    font-size: 20px;
+    margin: 0;
+  }
 }
 
 .three-links {
@@ -22,19 +23,43 @@ h2 {
   display: flex;
   justify-content: space-around;
   img {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
   }
   h4 {
     padding-bottom: 3%;
-    font-size: 16px;
+    font-size: 18px;
+    color: #001
   }
 }
 
 .home-link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .overlay {
-  // background-image: ;
+  height: 45vh;  
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("../images/serumHeroResize.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one-pic {
+  height: 45vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  h2{
+    display: inline;
+  }  
+}
+
+.homepage-one-pic{
+  width: 45vh
 }
