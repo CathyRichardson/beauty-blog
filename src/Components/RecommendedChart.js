@@ -3,6 +3,7 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import Chart from 'chart.js/auto';
+import { getByPlaceholderText } from '@testing-library/dom';
 
 function RecommendedChart(props) {
 
@@ -21,15 +22,17 @@ function RecommendedChart(props) {
                         {
                             label: 'Recommended',
                             data: yesCounts,
-                            backgroundColor: 'green',
+                            backgroundColor: '#3792A0',
                         },
                         {
                             label: 'Not Recommended',
                             data: noCounts,
-                            backgroundColor: 'red',
+                            backgroundColor: '#A75C3B',
                         }
                     ],
                 }}
+                height={null}
+                width={null}
                 options={{
                     // responsive: true,
                     indexAxis: 'y',
@@ -42,7 +45,11 @@ function RecommendedChart(props) {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Products Recommended by Users'
+                            text: 'User Recommendations',
+                            font: {
+                                weight: 'bold',
+                                size: 18
+                            }
                         }
                     }
                 }}
