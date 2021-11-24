@@ -11,15 +11,32 @@
     background-color: #fff;
   }
 
+  h1 {
+    font-size: 50px;
+    font-weight: bold;
+    padding: 25px 0;
+  }
+
   h2 {
-    padding: 3% 0 1% 0;
-    font-size: 20px;
+    padding: 6% 0 1% 0;
+    font-size: 30px;
+    font-weight: normal;
     margin: 0;
+  }
+
+  p {
+    padding: 0;
+    font-size: 15px;
+    color: black;
+  }
+
+  button {
+    margin: 10px 0;
   }
 }
 
 .three-links {
-  padding: 1%;
+  padding: 2%;
   display: flex;
   justify-content: space-around;
   img {
@@ -27,9 +44,10 @@
     width: 400px;
   }
   h4 {
-    padding-bottom: 3%;
+    padding-bottom: 15%;
     font-size: 18px;
-    color: #001
+    font-weight: normal;
+    color: #001;
   }
 }
 
@@ -38,7 +56,7 @@
 }
 
 .overlay {
-  height: 45vh;  
+  height: 45vh;
   color: white;
   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
     url("../images/serumHeroResize.jpg");
@@ -55,11 +73,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  h2{
+  h2 {
     display: inline;
-  }  
+  }
 }
 
-.homepage-one-pic{
-  width: 45vh
+.homepage-one-pic {
+  width: 45vh;
+}
+
+.no-pic {
+  background-color: #d4c4cf;
+  height: 45vh;
 }

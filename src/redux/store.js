@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import promiseMiddleware from 'redux-promise-middleware';
-// import productReducer from './productReducer';
 import userReducer from './userReducer';
+import recommendedReducer from './recommendedReducer';
 
 const rootReducer = combineReducers({
-    // product: productReducer,
+    recommended: recommendedReducer,
     user: userReducer
 });
 

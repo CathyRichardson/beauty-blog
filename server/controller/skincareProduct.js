@@ -1,8 +1,9 @@
+const e = require("express");
 
 const getAllProducts = async (req, res) => {
   const db = req.app.get('db');
   try {
-    const result = await db.products.get_products()
+    const result = await db.products.get_products();
     res.status(200).send(result);
   } catch (e) {
     res.status(500).send(e);
@@ -18,6 +19,37 @@ const getProduct = async (req, res) => {
       return res.status(404).send('Product not found');
     }
     res.status(200).send(currProduct);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+}
+
+const getProductsRecommended = async (req, res) => {
+  const db = req.app.get('db');
+  try {
+    const result = await db.products.get_products_recommended();
+
+    // convert db results into array of objects with yes and no counts
+    let recommended = [];
+    for (let i = 0; i < result.length; i++) {
+      // console.log("next result: ", i, result[i]);
+      const { product_id, product_name, is_recommended, count } = result[i];
+      let index = recommended.findIndex((product) => product.productId === product_id);
+      if (index < 0) {
+        // add new object
+        recommended.push({
+          productId: product_id,
+          productName: product_name,
+          yesCount: is_recommended === true ? count : 0,
+          noCount: is_recommended === false ? count : 0
+        })
+      } else {
+        // update existing object
+        is_recommended === true ? recommended[index].yesCount = count : recommended[index].noCount = count;
+      }
+    }
+
+    res.status(200).send(recommended);
   } catch (e) {
     res.status(500).send(e);
   }
@@ -69,6 +101,7 @@ const addProduct = async (req, res) => {
 module.exports = {
   getAllProducts,
   getProduct,
+  getProductsRecommended,
   updateProduct,
   deleteProduct,
   addProduct,

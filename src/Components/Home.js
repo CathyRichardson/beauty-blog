@@ -36,13 +36,17 @@ function Home() {
         </Link>
       </section>
       <section className="overlay">
-      <h2>Read reviews before you buy</h2>
+        <h2>Read reviews before you buy</h2>
       </section>
       <section className="one-pic">
-      <h2>Find the best product for all your beauty needs</h2>
-      <img className="homepage-one-pic"
-            src={beautyProduct}
-            alt="pump bottle displayed with roses and a rolled up towel to the side" />
+        <h2>Find the best products for all your beauty needs</h2>
+        <img className="homepage-one-pic"
+          src={beautyProduct}
+          alt="pump bottle displayed with roses and a rolled up towel to the side" />
+      </section>
+      <section className="no-pic">
+        <h2>Make your beauty routine better today!</h2>
+        <Link to='/beauty/skincare'><button className="home-button">Get Started</button></Link>
       </section>
     </div>
   );

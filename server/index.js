@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { getAllProducts, getProduct, updateProduct, deleteProduct, addProduct, adminDeleteProductComments } = require('./controller/skincareProduct');
+const { getAllProducts, getProduct, getProductsRecommended, updateProduct, deleteProduct, addProduct, adminDeleteProductComments }
+    = require('./controller/skincareProduct');
 const { getComments, addComment, deleteComment, adminDeleteComment } = require('./controller/skincareComment');
 const { register, login, logout, getUser, usersOnly, adminsOnly } = require('./controller/auth');
 
@@ -53,6 +54,6 @@ app.put('/api/skincare/products/:id', usersOnly, adminsOnly, updateProduct);
 app.delete('/api/skincare/products/:id', usersOnly, adminsOnly, adminDeleteProductComments, deleteProduct);
 app.get('/api/skincare/products', getAllProducts);
 app.get('/api/skincare/products/:id', getProduct);
-
+app.get('/api/skincare/products/all/recommended', getProductsRecommended);
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`));

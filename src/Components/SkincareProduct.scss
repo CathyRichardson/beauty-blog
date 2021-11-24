@@ -1,3 +1,23 @@
-.product-reviews {
-    
+.skincare-product {
+  padding: 3%;
+  h1 {
+    padding: 1%;
+  }
+}
+
+.product-overview {
+  display: flex;
+  justify-content: center;
+  .product-image {
+    max-height: 1000px;
+    padding: 2%;
+  }
+  .product-info {
+    text-align: left;
+    padding: 2%;
+  }
+}
+
+.product-review {
+    text-align: left;
 }

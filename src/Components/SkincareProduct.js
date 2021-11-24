@@ -149,13 +149,16 @@ function SkincareProduct(props) {
           <button onClick={() => handleAdminDelete(id)}>Admin Delete</button>
         </div>
         : null}
-
-      <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
-      <h4>Type: {type}</h4>
-      <h4>Price: {priceFormatter.format(price)}</h4>
-      <h4>Size: {size}</h4>
-      <h4>Review: {review}</h4>
-      <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
+      <section className="product-overview">
+        <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
+        <section className="product-info">
+          <h4>Type: {type}</h4>
+          <h4>Price: {priceFormatter.format(price)}</h4>
+          <h4>Size: {size}</h4>
+          <h4>Review: {review}</h4>
+          <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
+        </section>
+      </section>
 
       <h2>Reviews:</h2>
       <Link

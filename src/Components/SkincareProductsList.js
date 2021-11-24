@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './SkincareProductsList.scss'
+import RecommendedChart from './RecommendedChart';
 
 function SkincareProductsList(props) {
 
@@ -70,9 +71,8 @@ function SkincareProductsList(props) {
                         </Link>)
                 })}
             </section>
+            <RecommendedChart />
         </main>
-
-
     );
 }
 
