@@ -1,23 +1,44 @@
 .skincare-product {
   padding: 3%;
   h1 {
-    padding: 1%;
+    font-size: 25px;
+    padding: 2% 0;
   }
 }
 
 .product-overview {
   display: flex;
   justify-content: center;
-  .product-image {
-    max-height: 1000px;
+  background-color: #fff;
+  margin: 2% 8%;
+
+  .indiv-product-image {
+    max-height: 700px;
+    max-width: 600px;
     padding: 2%;
   }
+
   .product-info {
     text-align: left;
-    padding: 2%;
+    padding: 4% 2%;
+  }
+
+  h4 {
+    font-size: 18px;
+    padding: 2% 0;
+  }
+
+  span {
+    font-weight: normal;
   }
 }
 
-.product-review {
-    text-align: left;
+.product-reviews {
+  text-align: left;
+  margin: 1% 8%;
+}
+
+.product-reviews-indiv{
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
 }

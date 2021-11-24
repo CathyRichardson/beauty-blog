@@ -1,25 +1,31 @@
 import './SkincareProductsList';
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { connect } from 'react-redux';
 import Chart from 'chart.js/auto';
 
-function RecommendedChart() {
-    // TODO: get actual data from redux
+function RecommendedChart(props) {
+
+    const { recommendedProducts } = props.recommended;
+    // map product to chart data arrays
+    let products = recommendedProducts.map(prod => prod.productName);
+    let yesCounts = recommendedProducts.map(prod => prod.yesCount);
+    let noCounts = recommendedProducts.map(prod => prod.noCount);
+
     return (
         <div className="recommended-chart">
-
             <Bar
                 data={{
-                    labels: ['prod1', 'prod1', 'prod1', 'prod1', 'prod1', 'prod1'],
+                    labels: products,
                     datasets: [
                         {
                             label: 'Recommended',
-                            data: [12, 19, 3, 5, 2, 3],
+                            data: yesCounts,
                             backgroundColor: 'green',
                         },
                         {
                             label: 'Not Recommended',
-                            data: [6, 4, 3, 2, 1, 12],
+                            data: noCounts,
                             backgroundColor: 'red',
                         }
                     ],
@@ -41,9 +47,16 @@ function RecommendedChart() {
                     }
                 }}
             />
-
         </div>
     );
 }
 
-export default RecommendedChart;
+function mapStateToProps(state) {
+    return {
+        recommended: state.recommended
+    }
+}
+
+
+export default connect(mapStateToProps)(RecommendedChart);
+

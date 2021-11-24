@@ -135,7 +135,7 @@ function SkincareProduct(props) {
   return (
     <div className="skincare-product">
 
-      <h1>{productData.product.name}</h1>
+      
       {props.user.id && props.user.isAdmin ?
         <div>
           <Link
@@ -150,13 +150,14 @@ function SkincareProduct(props) {
         </div>
         : null}
       <section className="product-overview">
-        <img src={image} alt={`skincare product: ${productData.product.name}`} className="product-image" />
+        <img src={image} alt={`skincare product: ${productData.product.name}`} className="indiv-product-image" />
         <section className="product-info">
-          <h4>Type: {type}</h4>
-          <h4>Price: {priceFormatter.format(price)}</h4>
-          <h4>Size: {size}</h4>
-          <h4>Review: {review}</h4>
-          <h4>Recommended: {isRecommended ? 'yes' : 'no'}</h4>
+          <h1>{productData.product.name}</h1>
+          <h4>Type: <span>{type}</span></h4>
+          <h4>Price: <span>{priceFormatter.format(price)}</span></h4>
+          <h4>Size: <span>{size}</span></h4>
+          <h4>Review: <span>{review}</span></h4>
+          <h4>Recommended: <span>{isRecommended ? 'yes' : 'no'}</span></h4>
         </section>
       </section>
 
@@ -174,7 +175,7 @@ function SkincareProduct(props) {
           const { userId, user, review, isRecommended } = comment;
           return (
             <div className="product-reviews-indiv" key={comment.id}>
-              <h2>User Name: {user}</h2>
+              <h3>User Name: {user}</h3>
               <p>{review}</p>
               <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
               {props.user.id && (props.user.id === userId || props.user.isAdmin) ?

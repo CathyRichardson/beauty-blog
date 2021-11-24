@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { saveRecommendedData, clearRecommendedData } from '../redux/recommendedReducer';
 import './SkincareProductsList.scss'
 import RecommendedChart from './RecommendedChart';
 
@@ -15,6 +16,8 @@ function SkincareProductsList(props) {
             try {
                 const result = await axios.get(`/api/skincare/products`);
                 setProducts(productsFromDb(result.data));
+                const resultRecommended = await axios.get(`/api/skincare/products/all/recommended`);
+                props.saveRecommendedData(resultRecommended.data);
             } catch (error) {
                 console.log(error)
             }
@@ -82,6 +85,11 @@ function mapStateToProps(state) {
     }
 }
 
+const mapDispatchToProps = {
+    saveRecommendedData,
+    clearRecommendedData
+}
 
-export default connect(mapStateToProps)(SkincareProductsList);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SkincareProductsList);
 
