@@ -1,4 +1,3 @@
-// import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -84,15 +83,14 @@ function SkincareEditReview(props) {
     const { image, type, price, size } = productData;
 
     return (
-        <div>
+        <div className="skincare-product-edit">
             <h1>Add Product Review</h1>
             {!props.user.id ?
-                <p>Please Sign In</p>
+                <p >Please Sign In</p>
                 :
-                <div className="skincare-product-edit">
-
+                <section >
                     <h1>{productData.name}</h1>
-                    <img src={image} alt={`skincare product: ${productData.name}`} className="review-product-image" />
+                    <img src={image} alt={`skincare product: ${productData.name}`} className="indiv-product-image" />
                     <h4>Type: {type}</h4>
                     <h4>Price: {priceFormatter.format(price)}</h4>
                     <h4>Size: {size}</h4>
@@ -105,7 +103,7 @@ function SkincareEditReview(props) {
                     <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
                         <button>Cancel</button>
                     </Link>
-                </div>}
+                </section>}
         </div>
     );
 }

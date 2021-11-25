@@ -4,7 +4,7 @@
   text-align: center;
   box-sizing: border-box;
   background-color: $app-background;
-  p {
+  .footer-text {
     padding-top: 25px;
     color: $footer-text;
     font-size: 13px;
@@ -21,22 +21,15 @@
 }
 
 button {
-  background-color: $dark-main;
-  border: none;
-  color: $app-background;
-  padding: 10px;
-  margin: 5px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 13px;
-  border-radius: 5px;
+ @include button-main;
 }
 
 button:hover {
-  background-color: $button-hover;
+ @include button-hover;
  }
 
 footer {
   background-color: $footer-background;
   height: 80px;
+  padding-top: 30px;
 }

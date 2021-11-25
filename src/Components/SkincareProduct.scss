@@ -40,7 +40,22 @@
   margin: 1% 8%;
 }
 
-.product-reviews-indiv{
+.product-reviews-indiv {
   border-bottom: 1px solid $horizontal-line;
   padding-bottom: 20px;
+}
+
+.skincare-product-edit {
+  min-height: 70vh;
+  padding: 50px;
+  p {
+    margin: 30px;
+    font-size: 15px;
+    color: $dark-main;
+  }
+  img {
+    max-height: 300px;
+    max-width: 200px;
+    padding: 2%;
+  }
 }

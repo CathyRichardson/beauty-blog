@@ -9,7 +9,7 @@ function App() {
       <Header />
       {routes}
       <footer>
-        <p>A special thanks to DevMountain</p>
+        <p className="footer-text">A special thanks to DevMountain</p>
       </footer>
     </div>
   );
