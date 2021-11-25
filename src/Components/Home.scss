@@ -1,3 +1,5 @@
+@import "./base";
+
 .home {
   main {
     text-align: left;
@@ -8,13 +10,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #fff;
   }
 
   h1 {
     font-size: 50px;
     font-weight: bold;
     padding: 25px 0;
+    color: $header-text;
   }
 
   h2 {
@@ -27,7 +29,7 @@
   p {
     padding: 0;
     font-size: 15px;
-    color: black;
+    color: $header-text;
   }
 
   button {
@@ -47,7 +49,7 @@
     padding-bottom: 15%;
     font-size: 18px;
     font-weight: normal;
-    color: #001;
+    color: $header-text;
   }
 }
 
@@ -57,7 +59,7 @@
 
 .overlay {
   height: 45vh;
-  color: white;
+  color: $light-header-text;
   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
     url("../images/serumHeroResize.jpg");
   background-position: center;
@@ -83,6 +85,6 @@
 }
 
 .no-pic {
-  background-color: #d4c4cf;
+  background-color: $section-background;
   height: 45vh;
 }

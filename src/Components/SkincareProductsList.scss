@@ -1,3 +1,5 @@
+@import "./base";
+
 .skincare-product-list {
   padding-top: 3%;
 }
@@ -13,9 +15,9 @@
   margin: 5px;
   height: 320px;
   width: 300px;
-  background-color: white;
+  background-color: $product-background;
   position: relative;
-  color: #4a3b54;
+  color: $dark-main;
   text-decoration: none;
 
   h2 {

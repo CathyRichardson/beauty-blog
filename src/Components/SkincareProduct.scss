@@ -1,3 +1,5 @@
+@import "./base";
+
 .skincare-product {
   padding: 3%;
   h1 {
@@ -9,7 +11,7 @@
 .product-overview {
   display: flex;
   justify-content: center;
-  background-color: #fff;
+  background-color: $product-background;
   margin: 2% 8%;
 
   .indiv-product-image {
@@ -39,6 +41,6 @@
 }
 
 .product-reviews-indiv{
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid $horizontal-line;
   padding-bottom: 20px;
 }

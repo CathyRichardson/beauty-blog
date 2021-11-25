@@ -128,9 +128,11 @@ function Header(props) {
             <header>
                 <div className="header-flex">
                     <Link to='/beauty'><img src={logo} alt="beauty logo" className="beauty-logo" /></Link>
-                    <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
-                    <p className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
-                    <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
+                    <div className="sign-in-flex">
+                        <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
+                        <p className={`signed-in-user  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
+                        <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
+                    </div>
                 </div>
 
                 <ReactModal
@@ -184,7 +186,7 @@ function Header(props) {
 
                 <Nav />
             </header>
-          </div>
+        </div>
     );
 }
 

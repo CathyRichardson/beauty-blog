@@ -1,24 +1,29 @@
 @import "./base";
 
 header {
-  background-color: #fff;
- }
-header {
+  background-color: $header-background;
   .sign-in {
     background-color: transparent;
     border: none;
     font-weight: bold;
     text-transform: none;
-    color: #4a3b54;
+    color: $dark-main;
     cursor: pointer;
     font-size: 15px;
   }
   .sign-in:hover {
-    color: #556177;
+    color: $sign-in-hover;
   }
   .sign-in-hidden {
-    // visibility: hidden;
     display: none;
+  }
+  .signed-in-user {
+    font-weight: bold;
+    text-transform: none;
+    font-size: 15px;
+    color: $dark-main;
+    padding: 10px;
+    margin: 5px;
   }
 }
 
@@ -34,14 +39,13 @@ nav {
 
 .nav-link {
   margin: 20px;
-  color: #fff;
+  color: $nav-text;
   text-decoration: none;
   font-weight: bold;
-  // padding: 20px;
 }
 
 .nav-link:hover {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid $nav-text;
   cursor: pointer;
 }
 
@@ -51,6 +55,10 @@ nav {
   align-items: center;
   height: 10vh;
   margin: 0 15px;
+}
+
+.sign-in-flex {
+  display: flex;
 }
 
 .modal {
@@ -74,4 +82,5 @@ nav {
 hr {
   width: 100%;
   margin: 20px 0;
+  color: $horizontal-line;
 }
