@@ -71,6 +71,18 @@ const getUser = (req, res) => {
     }
 }
 
+const setUserAdmin = async (req, res) => {
+    const { admin } = req.query;
+    const db = req.app.get('db');
+    try {
+        // TODO: if user exists, update the user's is_admin state
+        res.sendStatus(200);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+}
+
 const usersOnly = (req, res, next) => {
     if (!req.session.user) {
         return res.status(401).send('Please log in');
@@ -90,6 +102,7 @@ module.exports = {
     login,
     logout,
     getUser,
+    setUserAdmin,
     usersOnly,
     adminsOnly
 }

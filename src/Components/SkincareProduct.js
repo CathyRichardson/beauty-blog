@@ -135,7 +135,7 @@ function SkincareProduct(props) {
   return (
     <div className="skincare-product">
 
-      
+
       {props.user.id && props.user.isAdmin ?
         <div>
           <Link
@@ -167,8 +167,9 @@ function SkincareProduct(props) {
           pathname: `/beauty/skincare/reviews/edit/${id}`,
           state: productData.product,
         }}
+        className="review-button-link"
       >
-        <button>Add a Review</button>
+        <button className="add-review-button">Add a Review</button>
       </Link>
       <section className="product-reviews">
         {productData.comments.map((comment) => {

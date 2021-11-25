@@ -5,7 +5,7 @@ const session = require('express-session');
 const { getAllProducts, getProduct, getProductsRecommended, updateProduct, deleteProduct, addProduct, adminDeleteProductComments }
     = require('./controller/skincareProduct');
 const { getComments, addComment, deleteComment, adminDeleteComment } = require('./controller/skincareComment');
-const { register, login, logout, getUser, usersOnly, adminsOnly } = require('./controller/auth');
+const { register, login, logout, getUser, setUserAdmin, usersOnly, adminsOnly } = require('./controller/auth');
 
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
@@ -40,7 +40,7 @@ app.post('/api/auth/register', register);
 app.post('/api/auth/login', login);
 app.post('/api/auth/logout', logout);
 app.get('/api/auth/user', getUser);
-
+app.put('/api/auth/user/:id', usersOnly, adminsOnly, setUserAdmin);
 
 //skincare comment endpoints
 app.get('/api/skincare/comments/:id', getComments);

@@ -6,6 +6,17 @@
     font-size: 25px;
     padding: 2% 0;
   }
+  h2 {
+    text-align: left;
+    margin: 1% 8%;
+  }
+  .add-review-button {
+    display: flex;
+    margin: 0 8%;
+  }
+  .review-button-link {
+    text-decoration: none;
+  }
 }
 
 .product-overview {
@@ -38,9 +49,14 @@
 .product-reviews {
   text-align: left;
   margin: 1% 8%;
-}
+  h3,
+  p {
+    font-size: 15px;
+    font-weight: normal;
+  }
 
-.product-reviews-indiv {
-  border-bottom: 1px solid $horizontal-line;
-  padding-bottom: 20px;
+  .product-reviews-indiv {
+    border-bottom: 1px solid $horizontal-line;
+    padding-bottom: 20px;
+  }
 }

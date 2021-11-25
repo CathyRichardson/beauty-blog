@@ -176,10 +176,10 @@ function Header(props) {
                         Password
                         <input type="password" onChange={handlePasswordChange} value={password} />
                     </label>
-                    <label>
+                    {/* <label>
                         I am an Admin
                         <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
-                    </label>
+                    </label> */}
                     <button onClick={handleRegister}>Register</button>
                     <button onClick={handleCloseRegisterModal}>Cancel</button>
                 </ReactModal>
