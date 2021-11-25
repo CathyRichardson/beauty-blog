@@ -101,3 +101,16 @@ hr {
 // .set-admin-checkbox-input {
 //   position: relative;
 // }
+
+@media (max-width: 500px) {
+  .header-flex {
+    flex-direction: column;
+    margin: 20px 15px;
+  }
+  .nav-link {
+    margin: 10px;
+    color: $nav-text;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}

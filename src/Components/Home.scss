@@ -20,7 +20,7 @@
   }
 
   h2 {
-    padding: 6% 0 1% 0;
+    padding: 6% 2% 1% 2%;
     font-size: 30px;
     font-weight: normal;
     margin: 0;
@@ -38,68 +38,101 @@
     padding: 15px;
     font-size: 18px;
   }
-}
-
-.three-links {
-  padding: 2%;
-  display: flex;
-  justify-content: space-around;
-  img {
-    height: 400px;
-    width: 400px;
+  .three-links {
+    padding: 2%;
+    display: flex;
+    justify-content: space-around;
+    img {
+      height: 400px;
+      width: 400px;
+    }
+    h4 {
+      padding: 5% 0 25% 0;
+      font-size: 18px;
+      font-weight: normal;
+      text-transform: uppercase;
+      color: $header-text;
+    }
   }
-  h4 {
-    padding: 5% 0 25% 0;
-    font-size: 18px;
-    font-weight: normal;
-    text-transform: uppercase;
-    color: $header-text;
+
+  .home-link {
+    text-decoration: none;
   }
-}
 
-.home-link {
-  text-decoration: none;
-}
-
-.overlay {
-  height: 45vh;
-  color: $light-header-text;
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("../images/serumHeroResize.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  h2 {
-    padding: 0;
+  .overlay {
+    height: 45vh;
+    color: $light-header-text;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+      url("../images/serumHeroResize.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      padding: 0 2%;
+    }
   }
-}
 
-.one-pic {
-  height: 45vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  h2 {
-    display: inline;
-    padding: 0;
+  .one-pic {
+    height: 45vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h2 {
+      display: inline;
+      padding: 0 4%;
+    }
   }
-}
 
-.homepage-one-pic {
-  width: 45vh;
-}
+  .homepage-one-pic {
+    width: 45vh;
+  }
 
-.no-pic {
-  background-color: $section-background;
-  height: 45vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  h2 {
-    padding: 0;
+  .no-pic {
+    background-color: $section-background;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      padding: 30px 2% 0 2%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .three-links {
+      flex-direction: column;
+      h4 {
+        padding: 1% 0 10% 0;
+      }
+      img {
+        height: 250px;
+        width: 250px;
+      }
+    }
+    main {
+      text-align: center;
+    }
+    p {
+      padding: 1% 10%;
+      max-width: 500px;
+    }
+    h2 {
+      padding: 6% 2%;
+    }
+    .one-pic {
+      flex-direction: column;
+      padding-bottom: 40px;
+      h2 {
+        display: inline;
+        padding: 20px;
+      }
+      .homepage-one-pic {
+        width: 300px;
+      }
+    }
   }
 }
