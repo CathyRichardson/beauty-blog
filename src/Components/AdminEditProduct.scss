@@ -1,0 +1,40 @@
+@import "./base";
+
+.admin-edit-product {
+  h1 {
+    margin: 2% 0;
+  }
+  .admin-edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: $product-background;
+    margin: 2% 15%;
+    padding: 2%;
+    font-size: 15px;
+    img {
+      max-height: 800px;
+      max-width: 600px;
+    }
+    label {
+      padding: 1%;
+    }
+    .admin-edit-submit {
+      @include button-main;
+    }
+    .admin-edit-submit:hover {
+      @include button-hover;
+    }
+    h4 {
+      font-weight: normal;
+      padding: 1%;
+    }
+    textarea {
+      padding: 1%;
+      margin: 1%;
+    }
+    .admin-edit-buttons {
+      padding-top: 2%;
+    }
+  }
+}

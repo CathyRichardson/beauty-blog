@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './SkincareProduct.scss';
+import './AdminEditProduct.scss';
 
 function AdminEditProduct(props) {
 
@@ -101,13 +101,13 @@ function AdminEditProduct(props) {
     const { image, name, type, price, size, review, isRecommended } = productData;
 
     return (
-        <div className="skincare-product">
+        <div className="admin-edit-product">
             {isAdminAdding() ? <h1>Admin Add Product</h1> : <h1>Admin Edit Product</h1>}
             {!props.user.id || !props.user.isAdmin ?
                 <p>Please Sign In as an Admin</p>
                 :
                 <form onSubmit={handleSubmit} className="admin-edit-form">
-                    {isAdminAdding() ? null : <img src={image} alt={`skincare product: ${name}`} className="product-image" />}
+                    {isAdminAdding() ? null : <img src={image} alt={`skincare product: ${name}`} />}
                     <label>
                         Product Image:
                         <input type="url" name="image" value={image} required onChange={handleChange} />
@@ -130,16 +130,16 @@ function AdminEditProduct(props) {
                         Product Size:
                         <input type="text" name="size" value={size} required onChange={handleChange} />
                     </label>
-                    <label>
-                        Product Review:
-                        <textarea name="review" value={review} rows="5" cols="80" maxlength="500" required onChange={handleChange} ></textarea>
-                    </label>
+                    <h4>Product Review:</h4>
+                    <textarea name="review" value={review} rows="5" cols="80" maxlength="500" required onChange={handleChange} ></textarea>
                     <label>
                         <input type="checkbox" name="isRecommended" checked={isRecommended} onChange={handleChange} />
                         Yes! I recommend this product
                     </label>
-                    <input type="submit" value="Submit" className="admin-edit-submit" />
-                    <button onClick={handleCancel}>Cancel</button>
+                    <div className="admin-edit-buttons">
+                        <input type="submit" value="Submit" className="admin-edit-submit" />
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                 </form>
             }
         </div>
