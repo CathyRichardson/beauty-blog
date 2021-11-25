@@ -46,7 +46,8 @@ function Home() {
       </section>
       <section className="no-pic">
         <h2>Make your beauty routine better today!</h2>
-        <Link to='/beauty/skincare'><button className="home-button">Get Started</button></Link>
+        <Link to='/beauty/skincare'><button className="home-button">Get Started</button>
+        </Link>
       </section>
     </div>
   );

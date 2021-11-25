@@ -28,12 +28,15 @@
 
   p {
     padding: 0;
-    font-size: 15px;
+    font-size: 20px;
     color: $header-text;
+    max-width: 350px;
   }
 
   button {
-    margin: 10px 0;
+    margin: 30px 0;
+    padding: 15px;
+    font-size: 18px;
   }
 }
 
@@ -46,9 +49,10 @@
     width: 400px;
   }
   h4 {
-    padding-bottom: 15%;
+    padding: 5% 0 25% 0;
     font-size: 18px;
     font-weight: normal;
+    text-transform: uppercase;
     color: $header-text;
   }
 }
@@ -60,7 +64,7 @@
 .overlay {
   height: 45vh;
   color: $light-header-text;
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url("../images/serumHeroResize.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -68,6 +72,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  h2 {
+    padding: 0;
+  }
 }
 
 .one-pic {
@@ -77,6 +84,7 @@
   align-items: center;
   h2 {
     display: inline;
+    padding: 0;
   }
 }
 
@@ -87,4 +95,11 @@
 .no-pic {
   background-color: $section-background;
   height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    padding: 0;
+  }
 }
