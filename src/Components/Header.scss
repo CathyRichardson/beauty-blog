@@ -84,3 +84,20 @@ hr {
   margin: 20px 0;
   color: $horizontal-line;
 }
+
+.set-admin-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+// .set-admin-checkbox-label {
+//   padding: 0;
+//   margin: 0;
+//   vertical-align: center;
+//   text-align: left;
+// }
+
+// .set-admin-checkbox-input {
+//   position: relative;
+// }

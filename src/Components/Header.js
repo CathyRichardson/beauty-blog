@@ -16,6 +16,7 @@ function Header(props) {
     //modal states
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [showSetAdminModal, setShowSetAdminModal] = useState(false);
     //user states
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -76,6 +77,35 @@ function Header(props) {
         setShowRegisterModal(false);
     }
 
+    const handleOpenSetAdminModal = () => {
+        setShowSetAdminModal(true);
+    }
+
+    const handleCloseSetAdminModal = () => {
+        setUsername('');
+        setIsAdmin(false);
+        setShowSetAdminModal(false);
+    }
+
+    const handleSetAdmin = async () => {
+        try {
+            if (!username) {
+                alert("Username is required")
+            } else if (props.user.username === username) {
+                alert("Cannot change the admin state of the currently logged in user");
+            } else {
+                const { data } = await axios.put(`/api/auth/user/${username}?admin=${isAdmin}`);
+                handleCloseSetAdminModal();
+            }
+        } catch (err) {
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
+        }
+    }
+
     const handleUsernameChange = (event) => {
         const { value } = event.target;
         setUsername(value);
@@ -98,7 +128,7 @@ function Header(props) {
 
     const handleRegister = async () => {
         try {
-            const { data } = await axios.post('/api/auth/register', { username, email, password, isAdmin });
+            const { data } = await axios.post('/api/auth/register', { username, email, password });
             props.saveUserData(data);
             handleCloseRegisterModal();
         } catch (err) {
@@ -131,6 +161,10 @@ function Header(props) {
                     <div className="sign-in-flex">
                         <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
                         <p className={`signed-in-user  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
+                        <button
+                            onClick={handleOpenSetAdminModal}
+                            className={`sign-in  ${props.user.username && props.user.isAdmin ? '' : 'sign-in-hidden'}`}>Admin
+                        </button>
                         <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
                     </div>
                 </div>
@@ -176,17 +210,33 @@ function Header(props) {
                         Password
                         <input type="password" onChange={handlePasswordChange} value={password} />
                     </label>
-                    {/* <label>
-                        I am an Admin
-                        <input type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
-                    </label> */}
                     <button onClick={handleRegister}>Register</button>
                     <button onClick={handleCloseRegisterModal}>Cancel</button>
                 </ReactModal>
 
+                <ReactModal
+                    isOpen={showSetAdminModal}
+                    contentLabel="Set Admin Modal"
+                    onRequestClose={handleCloseSetAdminModal}
+                    className="modal"
+                >
+                    <h2>Set User Admin</h2>
+                    <label>
+                        Username
+                        <input type="text" onChange={handleUsernameChange} value={username} />
+                    </label>
+                    <section className="set-admin-section">
+                        <input className="set-admin-checkbox-input" type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
+                        <label className="set-admin-checkbox-label">Make user an Admin</label>
+                    </section>
+                    <button onClick={handleSetAdmin}>Submit</button>
+                    <hr />
+                    <button onClick={handleCloseSetAdminModal}>Cancel</button>
+                </ReactModal>
+
                 <Nav />
             </header>
-        </div>
+        </div >
     );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './AdminEditProduct.scss';
 
@@ -93,9 +92,6 @@ function AdminEditProduct(props) {
             props.history.push(`/beauty/skincare/reviews/${props.match.params.id}`);
         }
     }
-
-    const priceFormatter = new Intl.NumberFormat('en-US',
-        { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
     // destructure to use in JSX of the return, below
     const { image, name, type, price, size, review, isRecommended } = productData;

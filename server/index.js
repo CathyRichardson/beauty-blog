@@ -40,7 +40,7 @@ app.post('/api/auth/register', register);
 app.post('/api/auth/login', login);
 app.post('/api/auth/logout', logout);
 app.get('/api/auth/user', getUser);
-app.put('/api/auth/user/:id', usersOnly, adminsOnly, setUserAdmin);
+app.put('/api/auth/user/:username', usersOnly, adminsOnly, setUserAdmin);
 
 //skincare comment endpoints
 app.get('/api/skincare/comments/:id', getComments);

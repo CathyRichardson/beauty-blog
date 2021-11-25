@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs');
 
 const register = async (req, res) => {
-    const { username, email, password, isAdmin } = req.body;
+    const { username, email, password } = req.body;
     try {
-        if (!username || !password || !email || isAdmin == null) {
-            return res.status(409).send('Please provide username, email, password, and isAdmin ');
+        if (!username || !password || !email) {
+            return res.status(409).send('Please provide username, email, and password');
         }
         const db = req.app.get('db');
         const getUserResult = await db.auth.get_user(username);
@@ -12,10 +12,11 @@ const register = async (req, res) => {
         if (existingUser) {
             return res.status(409).send('Username taken');
         }
+        // const hash = bcrypt.hashSync(password); // This line is equivalent to the next two lines, by default it provides a 10 character salt
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        // const hash = bcrypt.hashSync(password); -- This line is equivalent to the two above, by default it provides a 10 character salt
-        const registerUserResult = await db.auth.register_user(username, email, hash, isAdmin);
+        // Always register a new user with is_admin = false, only a previously registered admin can update the is_admin state of a new user
+        const registerUserResult = await db.auth.register_user(username, email, hash, false);
         const registeredUser = registerUserResult[0];
         req.session.user = {
             isAdmin: registeredUser.is_admin,
@@ -72,10 +73,19 @@ const getUser = (req, res) => {
 }
 
 const setUserAdmin = async (req, res) => {
+    const { username } = req.params;
     const { admin } = req.query;
     const db = req.app.get('db');
     try {
-        // TODO: if user exists, update the user's is_admin state
+        // check if the user exists
+        const getUserResult = await db.auth.get_user(username);
+        const existingUser = getUserResult[0];
+        if (!existingUser) {
+            return res.sendStatus(404);
+        }
+        // if we have an admin query parameter and it's true, set to isAdmin to true
+        let isAdmin = (admin && admin.toLowerCase() === "true") ? true : false;
+        await db.auth.set_user_admin(existingUser.id, req.session.user.id, isAdmin);
         res.sendStatus(200);
     } catch (e) {
         console.log(e);

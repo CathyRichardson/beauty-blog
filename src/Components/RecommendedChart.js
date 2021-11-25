@@ -3,7 +3,6 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import Chart from 'chart.js/auto';
-import { getByPlaceholderText } from '@testing-library/dom';
 
 function RecommendedChart(props) {
 
