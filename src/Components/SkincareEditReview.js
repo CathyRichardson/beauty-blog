@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './SkincareProduct.scss';
+import './SkincareEditReview.scss';
 
 function SkincareEditReview(props) {
 
@@ -88,22 +88,34 @@ function SkincareEditReview(props) {
             {!props.user.id ?
                 <p >Please Sign In</p>
                 :
-                <section >
-                    <h1>{productData.name}</h1>
-                    <img src={image} alt={`skincare product: ${productData.name}`} className="indiv-product-image" />
-                    <h4>Type: {type}</h4>
-                    <h4>Price: {priceFormatter.format(price)}</h4>
-                    <h4>Size: {size}</h4>
-
-                    <h2>Add Your Review:</h2>
-                    <textarea onChange={handleReviewChange} rows="5" cols="80" required maxlength="500"></textarea>
-                    <input onChange={handleUserRecommended} type="checkbox" id="recommended" />
-                    <label for="recommended">Yes! I recommend this product</label>
-                    <button onClick={handleSubmit}>Submit</button>
-                    <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
-                        <button>Cancel</button>
-                    </Link>
-                </section>}
+                <main >
+                    <section className="product-edit-info">
+                        <div>
+                            <img src={image} alt={`skincare product: ${productData.name}`} className="indiv-product-image" />
+                        </div>
+                        <div>
+                            <h4>{productData.name}</h4>
+                            <h4>Type: {type}</h4>
+                            <h4>Price: {priceFormatter.format(price)}</h4>
+                            <h4>Size: {size}</h4>
+                        </div>
+                    </section>
+                    <section className="add-review-section">
+                        <h2>Add Your Review:</h2>
+                        <textarea onChange={handleReviewChange} rows="5" cols="80" required maxlength="500">
+                        </textarea>
+                        <label >
+                            <input onChange={handleUserRecommended} type="checkbox" />
+                            Yes! I recommend this product
+                        </label>
+                        <div className="review-buttons">
+                            <button onClick={handleSubmit}>Submit</button>
+                            <Link to={`/beauty/skincare/reviews/${props.match.params.id}`} >
+                                <button>Cancel</button>
+                            </Link>
+                        </div>
+                    </section>
+                </main>}
         </div>
     );
 }
