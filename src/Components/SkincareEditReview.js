@@ -91,7 +91,7 @@ function SkincareEditReview(props) {
                 <main >
                     <section className="product-edit-info">
                         <div>
-                            <img src={image} alt={`skincare product: ${productData.name}`} className="indiv-product-image" />
+                            <img src={image} alt={`skincare product: ${productData.name}`} />
                         </div>
                         <div>
                             <h4>{productData.name}</h4>

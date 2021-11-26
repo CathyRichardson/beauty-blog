@@ -8,7 +8,7 @@
   }
   h2 {
     text-align: left;
-    margin: 1% 8%;
+    margin: 3% 8% 1% 8%;
   }
   .add-review-button {
     display: flex;
@@ -17,46 +17,52 @@
   .review-button-link {
     text-decoration: none;
   }
-}
+  .product-overview {
+    display: flex;
+    justify-content: center;
+    background-color: $product-background;
+    margin: 2% 8%;
 
-.product-overview {
-  display: flex;
-  justify-content: center;
-  background-color: $product-background;
-  margin: 2% 8%;
+    .indiv-product-image {
+      max-height: 700px;
+      max-width: 600px;
+      padding: 2%;
+    }
 
-  .indiv-product-image {
-    max-height: 700px;
-    max-width: 600px;
-    padding: 2%;
+    .product-info {
+      text-align: left;
+      padding: 4% 2%;
+    }
+
+    h4 {
+      font-size: 18px;
+      padding: 2% 2% 2% 0;
+    }
+
+    span {
+      font-weight: normal;
+    }
   }
 
-  .product-info {
+  .product-reviews {
     text-align: left;
-    padding: 4% 2%;
+    margin: 2% 8%;
+    h3,
+    p {
+      font-size: 15px;
+      font-weight: normal;
+    }
+
+    .product-reviews-indiv {
+      border-bottom: 1px solid $horizontal-line;
+      padding-bottom: 20px;
+    }
   }
 
-  h4 {
-    font-size: 18px;
-    padding: 2% 0;
-  }
-
-  span {
-    font-weight: normal;
-  }
-}
-
-.product-reviews {
-  text-align: left;
-  margin: 1% 8%;
-  h3,
-  p {
-    font-size: 15px;
-    font-weight: normal;
-  }
-
-  .product-reviews-indiv {
-    border-bottom: 1px solid $horizontal-line;
-    padding-bottom: 20px;
+  @media (max-width: 500px) {
+    .product-overview {
+      flex-direction: column;
+      padding: 8%;
+    }
   }
 }

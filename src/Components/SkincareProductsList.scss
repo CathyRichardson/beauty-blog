@@ -2,41 +2,47 @@
 
 .skincare-product-list {
   padding-top: 3%;
-}
-
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 3% 0 3% 6%;
-  min-width: 350px;
-}
-
-.product {
-  margin: 5px;
-  height: 320px;
-  width: 300px;
-  background-color: $product-background;
-  position: relative;
-  color: $dark-main;
-  text-decoration: none;
-
-  h2 {
-    font-size: 15px;
-    padding: 20px 15px 5px 15px;
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3% 0 3% 6%;
+    min-width: 350px;
   }
 
-  h3 {
-    font-size: 13px;
-    font-weight: normal;
+  .product {
+    margin: 5px;
+    height: 320px;
+    width: 300px;
+    background-color: $product-background;
+    position: relative;
+    color: $dark-main;
+    text-decoration: none;
+
+    h2 {
+      font-size: 15px;
+      padding: 20px 15px 5px 15px;
+    }
+
+    h3 {
+      font-size: 13px;
+      font-weight: normal;
+    }
   }
-}
 
-.product-image {
-  max-height: 225px;
-  max-width: 200px;
-}
+  .product-image {
+    max-height: 225px;
+    max-width: 200px;
+  }
 
-.recommended-chart {
-  width: 60vw;
-  margin: 0 0 2% 8%;
+  .recommended-chart {
+    width: 60vw;
+    margin: 0 0 2% 8%;
+  }
+
+  @media (max-width: 500px) {
+    .recommended-chart {
+      width: 100vw;
+      margin: 1%;
+    }
+  }
 }

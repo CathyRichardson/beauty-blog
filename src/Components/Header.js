@@ -21,18 +21,16 @@ function Header(props) {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
 
         const getData = async () => {
             try {
-                //How can I keep the username from flickering on page refresh?
                 const { data } = await axios.get('/api/auth/user');
                 props.saveUserData(data);
             } catch (err) {
                 if (err.response.status !== 404) {
-                    console.log(err)
+                    console.log(err);
                 }
             }
         }
@@ -73,8 +71,21 @@ function Header(props) {
         setUsername('');
         setEmail('');
         setPassword('');
-        setIsAdmin(false);
         setShowRegisterModal(false);
+    }
+
+    const handleRegister = async () => {
+        try {
+            const { data } = await axios.post('/api/auth/register', { username, email, password });
+            props.saveUserData(data);
+            handleCloseRegisterModal();
+        } catch (err) {
+            if (err.isAxiosError) {
+                alert(err.response.request.responseText);
+            } else {
+                alert(err);
+            }
+        }
     }
 
     const handleOpenSetAdminModal = () => {
@@ -83,18 +94,17 @@ function Header(props) {
 
     const handleCloseSetAdminModal = () => {
         setUsername('');
-        setIsAdmin(false);
         setShowSetAdminModal(false);
     }
 
-    const handleSetAdmin = async () => {
+    const handleSetAdmin = async (isSetToAdmin) => {
         try {
             if (!username) {
                 alert("Username is required")
             } else if (props.user.username === username) {
                 alert("Cannot change the admin state of the currently logged in user");
             } else {
-                const { data } = await axios.put(`/api/auth/user/${username}?admin=${isAdmin}`);
+                await axios.put(`/api/auth/user/${username}?admin=${isSetToAdmin}`);
                 handleCloseSetAdminModal();
             }
         } catch (err) {
@@ -119,25 +129,6 @@ function Header(props) {
     const handleEmailChange = (event) => {
         const { value } = event.target;
         setEmail(value);
-    }
-
-    const handleIsAdminChange = (event) => {
-        const { checked } = event.target;
-        setIsAdmin(checked);
-    }
-
-    const handleRegister = async () => {
-        try {
-            const { data } = await axios.post('/api/auth/register', { username, email, password });
-            props.saveUserData(data);
-            handleCloseRegisterModal();
-        } catch (err) {
-            if (err.isAxiosError) {
-                alert(err.response.request.responseText);
-            } else {
-                alert(err);
-            }
-        }
     }
 
     const handleSignOut = async () => {
@@ -221,15 +212,13 @@ function Header(props) {
                     className="modal"
                 >
                     <h2>Set User Admin</h2>
+                    <p>Set the Admin permissions of a registered user</p>
                     <label>
                         Username
                         <input type="text" onChange={handleUsernameChange} value={username} />
                     </label>
-                    <section className="set-admin-section">
-                        <input className="set-admin-checkbox-input" type="checkbox" onChange={handleIsAdminChange} value={isAdmin} />
-                        <label className="set-admin-checkbox-label">Make user an Admin</label>
-                    </section>
-                    <button onClick={handleSetAdmin}>Submit</button>
+                    <button onClick={() => handleSetAdmin(true)}>Set as Admin</button>
+                    <button onClick={() => handleSetAdmin(false)}>Set as Not Admin</button>
                     <hr />
                     <button onClick={handleCloseSetAdminModal}>Cancel</button>
                 </ReactModal>

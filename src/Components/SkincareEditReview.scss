@@ -1,45 +1,59 @@
 @import "./base";
 
 .skincare-product-edit {
-    min-height: 70vh;
-    padding: 50px;
-    p {
-      margin: 30px;
-      font-size: 15px;
-      color: $dark-main;
-    }
-    img {
-      max-height: 200px;
-      max-width: 150px;
-      padding: 2%;
-    }
-    .product-edit-info{
-      display: flex;
-      background-color: $product-background;
-      margin: 2% 15%;
-      padding: 2%;
-    }
-    h4{
-      font-weight: normal;
-      font-size: 13px;
-      text-align: left;
-      padding: 10px;
-    }
-    h2 {
-      text-align: left;
-      // margin-left: 15%;
-      font-weight: normal;
-      font-size: 20px;
-      text-transform: uppercase;
-    }
-    .add-review-section{
-      margin-left: 15%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .review-buttons{
-      padding-top: 2%;
+  min-height: 70vh;
+  padding: 50px;
+  p {
+    margin: 30px;
+    font-size: 15px;
+    color: $dark-main;
+  }
+  img {
+    max-height: 200px;
+    max-width: 150px;
+    padding: 2%;
+  }
+  .product-edit-info {
+    display: flex;
+    background-color: $product-background;
+    margin: 2% 15%;
+    padding: 2%;
+  }
+  h4 {
+    font-weight: normal;
+    font-size: 13px;
+    text-align: left;
+    padding: 10px;
+  }
+  h2 {
+    text-align: left;
+    // margin-left: 15%;
+    font-weight: normal;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .add-review-section {
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    textarea {
+      max-width: 50vw;
     }
   }
-  
+  .review-buttons {
+    padding-top: 2%;
+  }
+
+  @media (max-width: 500px) {
+    .product-edit-info {
+      flex-direction: column;
+    }
+    .add-review-section {
+      margin: 5% 0 0 15%;
+    }
+    h4 {
+      padding: 5px 10px;
+    }
+  }
+}
