@@ -39,10 +39,19 @@
     margin: 0 0 2% 8%;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 1060px) {
     .recommended-chart {
-      width: 100vw;
+      width: 95vw;
       margin: 1%;
+    }
+  }
+  @media (max-width: 670px) {
+    .recommended-chart {
+      height: 30vh;
+      margin: 1%;
+    }
+    .recommended-chart-wrapper {
+      overflow: auto;
     }
   }
 }

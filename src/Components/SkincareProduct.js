@@ -176,9 +176,11 @@ function SkincareProduct(props) {
           const { userId, user, review, isRecommended } = comment;
           return (
             <div className="product-reviews-indiv" key={comment.id}>
-              <h3>User Name: {user}</h3>
+              <div>
+                <h3>User Name: {user}</h3>
+                <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
+              </div>
               <p>{review}</p>
-              <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
               {props.user.id && (props.user.id === userId || props.user.isAdmin) ?
                 <button onClick={() => handleDeleteReview(comment.id)}>Delete</button> : null
               }

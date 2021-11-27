@@ -56,13 +56,15 @@
     .product-reviews-indiv {
       border-bottom: 1px solid $horizontal-line;
       padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
     }
   }
 
   @media (max-width: 500px) {
     .product-overview {
       flex-direction: column;
-      padding: 8%;
+         padding: 8%;
     }
   }
 }
