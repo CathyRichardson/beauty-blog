@@ -7,7 +7,7 @@ $light-header-text: #fff;
 $dark-main: #4a3b54;
 $footer-text: rgb(112, 98, 98);
 $footer-background: #cfd4dd;
-$button-hover: #B53813;
+$button-hover: #b53813;
 $sign-in-hover: #a89682;
 $nav-text: #fff;
 $horizontal-line: #9a9a9a;
@@ -26,4 +26,5 @@ $horizontal-line: #9a9a9a;
 
 @mixin button-hover {
   background-color: $button-hover;
+  transition: background-color 0.25s ease-in-out, color 0.3s ease-in-out;
 }
