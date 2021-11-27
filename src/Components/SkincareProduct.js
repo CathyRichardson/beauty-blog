@@ -177,13 +177,11 @@ function SkincareProduct(props) {
           return (
             <div className="product-reviews-indiv" key={comment.id}>
               <div>
-                <h3>User Name: {user}</h3>
-                <h3>Recommended: {isRecommended ? 'yes' : 'no'}</h3>
+                <h3><span>User Name:</span> {user}</h3>
+                <h3><span>Recommended:</span> {isRecommended ? 'yes' : 'no'}</h3>
               </div>
               <p>{review}</p>
-              {props.user.id && (props.user.id === userId || props.user.isAdmin) ?
-                <button onClick={() => handleDeleteReview(comment.id)}>Delete</button> : null
-              }
+              <button className={props.user.id && (props.user.id === userId || props.user.isAdmin) ? 'delete-visible' : 'delete-hidden'} onClick={() => handleDeleteReview(comment.id)}>Delete</button>
             </div>)
         })}
       </section>
