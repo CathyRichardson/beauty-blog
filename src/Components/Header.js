@@ -22,6 +22,8 @@ function Header(props) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
 
+    const modalFadeMilliseconds = 250;
+
     useEffect(() => {
 
         const getData = async () => {
@@ -164,6 +166,7 @@ function Header(props) {
                     isOpen={showSignInModal}
                     contentLabel="Sign In Modal"
                     onRequestClose={handleCloseSignInModal}
+                    closeTimeoutMS={modalFadeMilliseconds}
                     className="modal"
                 >
                     <h2>Sign In</h2>
@@ -185,6 +188,7 @@ function Header(props) {
                     isOpen={showRegisterModal}
                     contentLabel="Register Modal"
                     onRequestClose={handleCloseRegisterModal}
+                    closeTimeoutMS={modalFadeMilliseconds}
                     className="modal"
                 >
                     <h2>Register</h2>
@@ -209,6 +213,7 @@ function Header(props) {
                     isOpen={showSetAdminModal}
                     contentLabel="Set Admin Modal"
                     onRequestClose={handleCloseSetAdminModal}
+                    closeTimeoutMS={modalFadeMilliseconds}
                     className="modal"
                 >
                     <h2>Set User Admin</h2>
