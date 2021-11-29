@@ -70,12 +70,15 @@ function AdminEditProduct(props) {
             if (isAdminAdding()) {
                 //add a new product
                 await axios.post(`/api/skincare/products`, body);
+                // return to skincare products list page
+                props.history.push('/beauty/skincare');
             } else {
                 // update the product
                 await axios.put(`/api/skincare/products/${props.match.params.id}`, body);
+                // return to skincare product page
+                props.history.push(`/beauty/skincare/reviews/${props.match.params.id}`);
             }
-            // return to skincare products list page
-            props.history.push('/beauty/skincare');
+
         } catch (err) {
             if (err.isAxiosError) {
                 console.log(err.response.request.responseText);
