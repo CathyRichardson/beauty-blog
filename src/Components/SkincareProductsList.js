@@ -18,8 +18,12 @@ function SkincareProductsList(props) {
                 setProducts(productsFromDb(result.data));
                 const resultRecommended = await axios.get(`/api/skincare/products/all/recommended`);
                 props.saveRecommendedData(resultRecommended.data);
-            } catch (error) {
-                console.log(error)
+            } catch (err) {
+                if (err.isAxiosError) {
+                    console.log(err.response.request.responseText);
+                } else {
+                    console.log(err);
+                }
             }
         }
 

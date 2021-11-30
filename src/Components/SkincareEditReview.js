@@ -39,9 +39,13 @@ function SkincareEditReview(props) {
                 }
                 // save to component state
                 setProductData(currProduct);
-            } catch (error) {
-                console.log(error)
-            }
+            } catch (err) {
+                if (err.isAxiosError) {
+                  console.log(err.response.request.responseText);
+                } else {
+                  console.log(err);
+                }
+              }
         }
 
         getData();
