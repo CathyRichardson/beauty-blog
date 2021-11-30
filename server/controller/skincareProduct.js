@@ -32,7 +32,6 @@ const getProductsRecommended = async (req, res) => {
     // convert db results into array of objects with yes and no counts
     let recommended = [];
     for (let i = 0; i < result.length; i++) {
-      // console.log("next result: ", i, result[i]);
       const { product_id, product_name, is_recommended, count } = result[i];
       let index = recommended.findIndex((product) => product.productId === product_id);
       if (index < 0) {

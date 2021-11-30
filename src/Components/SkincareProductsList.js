@@ -47,12 +47,8 @@ function SkincareProductsList(props) {
         <main className="skincare-product-list">
             <h1>Skincare Products List</h1>
             {props.user.id && props.user.isAdmin ?
-                <Link
-                    to={{
-                        pathname: `/beauty/skincare/admin/0`, //id 0 means add item
-                        // state: productData.product,
-                    }}
-                >
+                //id 0 means add item  
+                <Link to={`/beauty/skincare/admin/0`}>
                     <button>Admin Add Product</button>
                 </Link>
                 : null}
