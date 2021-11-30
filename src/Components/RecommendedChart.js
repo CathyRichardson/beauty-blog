@@ -11,11 +11,13 @@ function RecommendedChart(props) {
     const truncateWords = (input) => {
         let result = ''
         let words = input.split(' ');
-        words.forEach(el => {
-            if (result.length + el.length < 40) {
-                result += `${el} `;
+        for (let i = 0; i < words.length; i++) {
+            let el = words[i];
+            if (result.length + el.length > 40) {
+                break;
             }
-        });
+            result += `${el} `;
+        }
         return result;
     }
 
