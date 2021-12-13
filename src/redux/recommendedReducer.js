@@ -1,11 +1,13 @@
 
 const initialState = {
-    recommendedProducts: [] //array of {prodName, yesCount, noCount}
+    recommendedProducts: [] // array of {prodName, yesCount, noCount}
 }
 
+// action types
 const SAVE_RECOMMENDED_DATA = "SAVE_RECOMMENDED_DATA";
 const CLEAR_RECOMMENDED_DATA = "CLEAR_RECOMMENDED_DATA";
 
+// action creators
 export function saveRecommendedData(data) {
     return {
         type: SAVE_RECOMMENDED_DATA,

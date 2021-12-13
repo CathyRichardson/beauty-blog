@@ -28,7 +28,7 @@ function Header(props) {
 
         const getData = async () => {
             try {
-                const { data } = await axios.get('/api/auth/user');
+                const { data } = await axios.get('/api/auth/user');  // get current logged in user, if any
                 props.saveUserData(data);
             } catch (err) {
                 if (err.response.status !== 404) {
@@ -147,100 +147,99 @@ function Header(props) {
     }
 
     return (
-        <div>
-            <header>
-                <div className="header-flex">
-                    <Link to='/beauty'><img src={logo} alt="beauty logo" className="beauty-logo" /></Link>
-                    <div className="sign-in-flex">
-                        <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
-                        <p className={`signed-in-user  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
-                        <button
-                            onClick={handleOpenSetAdminModal}
-                            className={`sign-in  ${props.user.username && props.user.isAdmin ? '' : 'sign-in-hidden'}`}>Admin
-                        </button>
-                        <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
-                    </div>
+        <header>
+            <div className="header-flex">
+                <Link to='/beauty'><img src={logo} alt="beauty logo" className="beauty-logo" /></Link>
+                <div className="sign-in-flex">
+                    <button onClick={handleOpenSignInModal} className={`sign-in  ${props.user.username ? 'sign-in-hidden' : ''}`} >Sign In</button>
+                    <p className={`signed-in-user  ${props.user.username ? '' : 'sign-in-hidden'}`}>Welcome: {props.user.username}</p>
+                    <button
+                        onClick={handleOpenSetAdminModal}
+                        className={`sign-in  ${props.user.username && props.user.isAdmin ? '' : 'sign-in-hidden'}`}>
+                        Admin
+                    </button>
+                    <button onClick={handleSignOut} className={`sign-in  ${props.user.username ? '' : 'sign-in-hidden'}`}>Sign Out</button>
                 </div>
+            </div>
 
-                <ReactModal
-                    isOpen={showSignInModal}
-                    contentLabel="Sign In Modal"
-                    onRequestClose={handleCloseSignInModal}
-                    closeTimeoutMS={modalFadeMilliseconds}
-                    className="modal"
-                >
-                    <h2>Sign In</h2>
-                    <label>
-                        Username
-                        <input type="text" onChange={handleUsernameChange} value={username} />
-                    </label>
-                    <label>
-                        Password
-                        <input type="password" onChange={handlePasswordChange} value={password} />
-                    </label>
-                    <button onClick={handleSignIn}>Sign In</button>
-                    <hr />
-                    <button onClick={handleOpenRegisterModal}>Register</button>
-                    <button onClick={handleCloseSignInModal}>Cancel</button>
-                </ReactModal>
+            <ReactModal
+                isOpen={showSignInModal}
+                contentLabel="Sign In Modal"
+                onRequestClose={handleCloseSignInModal}
+                closeTimeoutMS={modalFadeMilliseconds}
+                className="modal"
+            >
+                <h2>Sign In</h2>
+                <label>
+                    Username
+                    <input type="text" onChange={handleUsernameChange} value={username} />
+                </label>
+                <label>
+                    Password
+                    <input type="password" onChange={handlePasswordChange} value={password} />
+                </label>
+                <button onClick={handleSignIn}>Sign In</button>
+                <hr />
+                <button onClick={handleOpenRegisterModal}>Register</button>
+                <button onClick={handleCloseSignInModal}>Cancel</button>
+            </ReactModal>
 
-                <ReactModal
-                    isOpen={showRegisterModal}
-                    contentLabel="Register Modal"
-                    onRequestClose={handleCloseRegisterModal}
-                    closeTimeoutMS={modalFadeMilliseconds}
-                    className="modal"
-                >
-                    <h2>Register</h2>
-                    <label>
-                        Username
-                        <input type="text" onChange={handleUsernameChange} value={username} />
-                    </label>
-                    <label>
-                        Email
-                        <input type="email" onChange={handleEmailChange} value={email} />
-                    </label>
+            <ReactModal
+                isOpen={showRegisterModal}
+                contentLabel="Register Modal"
+                onRequestClose={handleCloseRegisterModal}
+                closeTimeoutMS={modalFadeMilliseconds}
+                className="modal"
+            >
+                <h2>Register</h2>
+                <label>
+                    Username
+                    <input type="text" onChange={handleUsernameChange} value={username} />
+                </label>
+                <label>
+                    Email
+                    <input type="email" onChange={handleEmailChange} value={email} />
+                </label>
 
-                    <label>
-                        Password
-                        <input type="password" onChange={handlePasswordChange} value={password} />
-                    </label>
-                    <button onClick={handleRegister}>Register</button>
-                    <button onClick={handleCloseRegisterModal}>Cancel</button>
-                </ReactModal>
+                <label>
+                    Password
+                    <input type="password" onChange={handlePasswordChange} value={password} />
+                </label>
+                <button onClick={handleRegister}>Register</button>
+                <button onClick={handleCloseRegisterModal}>Cancel</button>
+            </ReactModal>
 
-                <ReactModal
-                    isOpen={showSetAdminModal}
-                    contentLabel="Set Admin Modal"
-                    onRequestClose={handleCloseSetAdminModal}
-                    closeTimeoutMS={modalFadeMilliseconds}
-                    className="modal"
-                >
-                    <h2>Set User Admin</h2>
-                    <p>Set the Admin permissions of a registered user</p>
-                    <label>
-                        Username
-                        <input type="text" onChange={handleUsernameChange} value={username} />
-                    </label>
-                    <button onClick={() => handleSetAdmin(true)}>Set as Admin</button>
-                    <button onClick={() => handleSetAdmin(false)}>Set as Not Admin</button>
-                    <hr />
-                    <button onClick={handleCloseSetAdminModal}>Cancel</button>
-                </ReactModal>
+            <ReactModal
+                isOpen={showSetAdminModal}
+                contentLabel="Set Admin Modal"
+                onRequestClose={handleCloseSetAdminModal}
+                closeTimeoutMS={modalFadeMilliseconds}
+                className="modal"
+            >
+                <h2>Set User Admin</h2>
+                <p>Set the Admin permissions of a registered user</p>
+                <label>
+                    Username
+                    <input type="text" onChange={handleUsernameChange} value={username} />
+                </label>
+                <button onClick={() => handleSetAdmin(true)}>Set as Admin</button>
+                <button onClick={() => handleSetAdmin(false)}>Set as Not Admin</button>
+                <hr />
+                <button onClick={handleCloseSetAdminModal}>Cancel</button>
+            </ReactModal>
 
-                <Nav />
-            </header>
-        </div >
+            <Nav />
+        </header>
     );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {  // redux properties to get from store
     return {
         user: state.user
     }
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps = {  // redux actions we want to call to set store
     saveUserData,
     clearUserData
 }

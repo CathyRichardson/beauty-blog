@@ -1,4 +1,4 @@
-import './SkincareProductsList';
+import './SkincareProductsList.scss';
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import Chart from 'chart.js/auto';
 
 function RecommendedChart(props) {
 
-    const { recommendedProducts } = props.recommended;
+    const { recommendedProducts } = props.recommended;  // from redux
 
     const truncateWords = (input) => {
         let result = ''
