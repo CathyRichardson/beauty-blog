@@ -40,7 +40,7 @@ VALUES
 ('https://www.vanicream.com/dynamic-media/product/images/vanicream-facial-cleanser-8oz-front-bp20a.jpg?gravity=center&v=galleryZoom&k=6kRgk91BEufhjMU%2BV6bf6A',
 'Vanicream Gentle Facial Cleanser', '2nd Cleanse/ AM Face Wash', 8.99, '8 fl. oz.','A good basic cleanser', true),
 
-('https://cdn.shopify.com/s/files/1/1525/1400/products/0365_front_540x.jpg?v=1569333261',
+('https://cdn.shopify.com/s/files/1/1525/1400/products/PH_DE_0365_BOTTLE_R0622.jpg?v=1655736932',
 'DERMA E Vitamin C Serum', 'Vitamin C Serum', 19.99, '2 fl. oz.','A good basic vitamin C serum', true),
 
 ('https://www.vichyusa.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-vichy-master-catalog/default/dw889a10f7/product/Mineral-89-Hyaluronic-Acid-Moisturizer-50ml-Vichy-PDP-3337875543248.jpg?sw=565&sh=400&sm=fit&q=70', 
@@ -61,7 +61,7 @@ VALUES
 ('https://static.thcdn.com/images/large/webp//productimg/1600/1600/11814869-9924866362390772.jpg',
 'Colorescience Sunforgettable Total Protection Face Shield', 'Facial SPF', 39.00, '1 fl. oz.','Hydrating SPF with a tint that is good for fair skin', true),
 
-('https://www.aquaphorus.com/wp-content/uploads/2016/06/healing-1_75_ver_2.jpg',
+('https://images-1.eucerin.com/~/media/aquaphor/products/new%20ecomm%20aq%20images/aqu_ho_7oz_tube-ecom1000x1000_72dpi.webp?rx=0&ry=0&rw=1000&rh=1000&mw=820&hash=F7759EEF719257A0C6CC14412C5271A9',
 'Aquaphor Healing Ointment', 'Lip Product', 4.49, '1.75 fl. oz.','Great basic lip, face, or body ointment', true),
 
 ('https://target.scene7.com/is/image/Target/GUEST_9e2a5df1-af9c-4fd8-8619-ae3b4dbbcebb?fmt=webp&wid=1400&qlt=80',
